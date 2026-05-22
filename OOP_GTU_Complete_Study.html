@@ -1,0 +1,3214 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OOP-I (3140705) GTU Complete Study Guide</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f0f1a; color: #e0e0f0; line-height: 1.7; }
+header { background: linear-gradient(135deg, #1a1a3e 0%, #2d1b69 50%, #1a1a3e 100%); padding: 30px 20px; text-align: center; border-bottom: 2px solid #7c3aed; }
+header h1 { font-size: 2rem; color: #a78bfa; font-weight: 700; }
+header p { color: #c4b5fd; margin-top: 8px; font-size: 0.95rem; }
+.badge { display: inline-block; background: #7c3aed; color: white; padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; margin: 4px; }
+nav { background: #1a1a2e; padding: 15px 20px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #333; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+nav a { color: #a78bfa; text-decoration: none; font-size: 0.85rem; padding: 5px 12px; border: 1px solid #7c3aed; border-radius: 15px; transition: all 0.2s; }
+nav a:hover { background: #7c3aed; color: white; }
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+.chapter { margin: 30px 0; border: 1px solid #2a2a4a; border-radius: 12px; overflow: hidden; background: #12122a; }
+.ch-header { background: linear-gradient(90deg, #1e1b4b, #2d1b69); padding: 18px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.ch-header h2 { color: #c4b5fd; font-size: 1.2rem; }
+.ch-header .arrow { color: #7c3aed; font-size: 1.2rem; transition: transform 0.3s; }
+.ch-header.open .arrow { transform: rotate(180deg); }
+.ch-body { display: none; padding: 20px; }
+.ch-body.open { display: block; }
+.question-card { background: #1a1a3e; border: 1px solid #2a2a5a; border-radius: 10px; margin: 15px 0; overflow: hidden; }
+.q-header { background: #1e1b4b; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.q-header:hover { background: #252550; }
+.q-text { color: #e2d9f3; font-size: 0.95rem; font-weight: 500; flex: 1; }
+.q-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; min-width: 80px; }
+.year-tag { background: #4c1d95; color: #ddd6fe; font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+.marks-tag { background: #1e3a5f; color: #93c5fd; font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; }
+.answer { display: none; padding: 18px; background: #13132a; border-top: 1px solid #2a2a5a; }
+.answer.open { display: block; }
+.answer h3 { color: #818cf8; margin: 14px 0 6px; font-size: 1rem; }
+.answer h4 { color: #a78bfa; margin: 10px 0 4px; font-size: 0.92rem; }
+.answer p { color: #c8c8e8; margin: 8px 0; font-size: 0.9rem; }
+.answer ul, .answer ol { color: #c8c8e8; font-size: 0.9rem; padding-left: 20px; margin: 8px 0; }
+.answer li { margin: 5px 0; }
+.code { background: #0a0a1a; border: 1px solid #2a2a5a; border-radius: 8px; padding: 14px; font-family: 'Courier New', monospace; font-size: 0.83rem; color: #a5f3fc; overflow-x: auto; margin: 12px 0; white-space: pre; line-height: 1.5; }
+.diagram { background: #0d0d20; border: 1px solid #374151; border-radius: 10px; padding: 15px; margin: 12px 0; text-align: center; }
+.diagram svg { max-width: 100%; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.87rem; }
+th { background: #1e1b4b; color: #c4b5fd; padding: 10px 12px; text-align: left; border: 1px solid #3730a3; }
+td { padding: 9px 12px; border: 1px solid #1e1e3e; color: #c8c8e8; }
+tr:nth-child(even) td { background: #14142e; }
+.highlight { background: #1e3a1e; border-left: 4px solid #22c55e; padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 0.9rem; color: #86efac; }
+.note { background: #1e2a3e; border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 0.9rem; color: #93c5fd; }
+.warning { background: #2a1e00; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 0.9rem; color: #fcd34d; }
+.freq-high { border-left: 4px solid #ef4444; }
+.freq-med { border-left: 4px solid #f59e0b; }
+.freq-low { border-left: 4px solid #22c55e; }
+.open-btn { background: none; border: none; color: #7c3aed; cursor: pointer; font-size: 0.85rem; padding: 5px 10px; }
+.topic-summary { background: #0f0f2a; padding: 12px; border-radius: 8px; margin-bottom: 12px; font-size: 0.85rem; color: #9ca3af; }
+.imp-label { background: #7c3aed; color: white; font-size: 0.7rem; padding: 1px 6px; border-radius: 8px; margin-left: 6px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📚 OOP-I (3140705) — GTU Complete Study Guide</h1>
+  <p>All questions from 2021–2025 (Summer & Winter) organized by chapter with answers</p>
+  <div style="margin-top:12px;">
+    <span class="badge">S2021</span><span class="badge">W2021</span><span class="badge">S2022</span><span class="badge">W2022</span>
+    <span class="badge">S2023</span><span class="badge">W2023</span><span class="badge">S2024</span><span class="badge">W2024</span>
+    <span class="badge">S2025</span><span class="badge">W2025</span>
+  </div>
+</header>
+
+<nav>
+  <strong style="color:#a78bfa; font-size:0.85rem;">Jump to:</strong>
+  <a href="#ch1">Ch1: Java Basics</a>
+  <a href="#ch2">Ch2: OOP Concepts</a>
+  <a href="#ch3">Ch3: Classes & Objects</a>
+  <a href="#ch4">Ch4: Inheritance</a>
+  <a href="#ch5">Ch5: Polymorphism</a>
+  <a href="#ch6">Ch6: Interfaces & Abstract</a>
+  <a href="#ch7">Ch7: Exception Handling</a>
+  <a href="#ch8">Ch8: Strings</a>
+  <a href="#ch9">Ch9: I/O & Files</a>
+  <a href="#ch10">Ch10: Collections</a>
+  <a href="#ch11">Ch11: Multithreading</a>
+  <a href="#ch12">Ch12: Generics</a>
+  <a href="#ch13">Ch13: JavaFX GUI</a>
+</nav>
+
+<div class="container">
+
+<!-- ============================================================ -->
+<!-- CHAPTER 1: Java Basics -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch1">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 1: Java Basics — Data Types, Keywords, JVM, Bytecode</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: JVM, Bytecode, Data Types, Type Casting, Loops, Arrays, Keywords (static, final, super, this, new), Java features</div>
+
+    <!-- Q1 -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">List out features of Java. Explain any two features. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2022</span><span class="marks-tag">3 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>Features of Java</h3>
+        <ul>
+          <li><strong>Simple</strong> — Easy syntax, no pointers, automatic garbage collection</li>
+          <li><strong>Object-Oriented</strong> — Everything is an object; supports encapsulation, inheritance, polymorphism</li>
+          <li><strong>Platform Independent</strong> — "Write once, run anywhere" via JVM and bytecode</li>
+          <li><strong>Secure</strong> — No pointer arithmetic; bytecode verifier checks code</li>
+          <li><strong>Robust</strong> — Strong type checking, exception handling, garbage collection</li>
+          <li><strong>Multithreaded</strong> — Built-in support for concurrent execution</li>
+          <li><strong>High Performance</strong> — JIT (Just-In-Time) compiler speeds up execution</li>
+          <li><strong>Distributed</strong> — Supports TCP/IP, RMI for network programming</li>
+          <li><strong>Dynamic</strong> — Classes loaded at runtime; supports reflection</li>
+        </ul>
+        <h3>Explanation of Two Features:</h3>
+        <h4>1. Platform Independence</h4>
+        <p>Java compiler converts source code (.java) into bytecode (.class). The JVM (Java Virtual Machine) interprets this bytecode on any OS/hardware. So the same .class file runs on Windows, Linux, Mac — hence "Write Once, Run Anywhere".</p>
+        <div class="diagram">
+          <svg viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="30" width="100" height="40" rx="6" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="55" y="55" text-anchor="middle" fill="#c4b5fd" font-size="12">Source.java</text>
+            <text x="115" y="55" fill="#a78bfa" font-size="20">→</text>
+            <rect x="135" y="30" width="100" height="40" rx="6" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="185" y="55" text-anchor="middle" fill="#93c5fd" font-size="12">javac (compiler)</text>
+            <text x="245" y="55" fill="#a78bfa" font-size="20">→</text>
+            <rect x="265" y="30" width="100" height="40" rx="6" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="315" y="55" text-anchor="middle" fill="#c4b5fd" font-size="12">Bytecode.class</text>
+            <text x="375" y="55" fill="#a78bfa" font-size="20">→</text>
+            <rect x="395" y="30" width="100" height="40" rx="6" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="445" y="55" text-anchor="middle" fill="#86efac" font-size="12">JVM (any OS)</text>
+          </svg>
+        </div>
+        <h4>2. Object-Oriented</h4>
+        <p>Java is built around objects and classes. It supports the four pillars: Encapsulation (hiding data), Inheritance (reusing code), Polymorphism (many forms), and Abstraction (hiding complexity).</p>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">What is Java bytecode, and what is the extension? Which software is needed to run it?</span>
+        <div class="q-meta"><span class="year-tag">S2023</span><span class="marks-tag">3 marks</span></div>
+      </div>
+      <div class="answer">
+        <p><strong>Bytecode</strong> is the intermediate representation of a Java program produced by the Java compiler. It is neither machine code nor source code — it is an architecture-neutral instruction set.</p>
+        <ul>
+          <li><strong>Extension:</strong> .class</li>
+          <li><strong>Software to run:</strong> JVM (Java Virtual Machine) — part of JRE (Java Runtime Environment)</li>
+        </ul>
+        <div class="diagram">
+          <svg viewBox="0 0 460 120" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="40" width="120" height="40" rx="6" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="70" y="57" text-anchor="middle" fill="#c4b5fd" font-size="11">Hello.java</text>
+            <text x="70" y="72" text-anchor="middle" fill="#9ca3af" font-size="9">(Source code)</text>
+            <text x="140" y="63" fill="#7c3aed" font-size="18">→</text>
+            <text x="145" y="80" fill="#9ca3af" font-size="9">javac</text>
+            <rect x="170" y="40" width="120" height="40" rx="6" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="230" y="57" text-anchor="middle" fill="#93c5fd" font-size="11">Hello.class</text>
+            <text x="230" y="72" text-anchor="middle" fill="#9ca3af" font-size="9">(Bytecode)</text>
+            <text x="300" y="63" fill="#7c3aed" font-size="18">→</text>
+            <text x="305" y="80" fill="#9ca3af" font-size="9">java (JVM)</text>
+            <rect x="330" y="40" width="120" height="40" rx="6" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="390" y="57" text-anchor="middle" fill="#86efac" font-size="11">Output</text>
+            <text x="390" y="72" text-anchor="middle" fill="#9ca3af" font-size="9">(any platform)</text>
+          </svg>
+        </div>
+        <div class="highlight">The JVM interprets bytecode and converts it to machine-specific instructions at runtime. This is what makes Java platform-independent.</div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Discuss significance of byte code. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">W2022</span><span class="marks-tag">3 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>Significance of Bytecode</h3>
+        <ul>
+          <li><strong>Platform Independence:</strong> Bytecode is not tied to any specific hardware or OS. The JVM on each platform converts it to native machine code.</li>
+          <li><strong>Security:</strong> Bytecode is verified by the JVM's bytecode verifier before execution, preventing illegal operations.</li>
+          <li><strong>Performance:</strong> JIT (Just-In-Time) compiler converts frequently used bytecode to native code, improving speed.</li>
+          <li><strong>Portability:</strong> Same .class file can run on Windows, Linux, macOS without recompilation.</li>
+          <li><strong>Optimization:</strong> JVM can apply runtime optimizations to bytecode execution.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">How Java supports platform independency? What is the role of JVM in it?</span>
+        <div class="q-meta"><span class="year-tag">W2023</span><span class="marks-tag">3 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>Java achieves platform independence through a two-step compilation process:</p>
+        <ol>
+          <li><strong>Step 1:</strong> Java compiler (javac) compiles .java source code into platform-neutral <strong>bytecode</strong> (.class files)</li>
+          <li><strong>Step 2:</strong> The <strong>JVM</strong> on the target machine interprets the bytecode and converts it to native machine instructions</li>
+        </ol>
+        <h3>Role of JVM:</h3>
+        <ul>
+          <li>Acts as an interpreter/translator between bytecode and native machine code</li>
+          <li>Each OS has its own JVM implementation, but all execute the same bytecode</li>
+          <li>Manages memory through garbage collection</li>
+          <li>Performs security checks via bytecode verifier</li>
+          <li>Uses JIT compiler to speed up execution</li>
+        </ul>
+        <div class="note">JVM is platform-dependent (different JVM for Windows/Linux/Mac), but the bytecode it runs is platform-independent. This is the key insight!</div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">What are syntax errors, runtime errors, and logic errors? <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">W2021, S2023</span><span class="marks-tag">3–4 marks</span></div>
+      </div>
+      <div class="answer">
+        <table>
+          <tr><th>Type</th><th>When Detected</th><th>Example</th></tr>
+          <tr><td><strong>Syntax Error</strong></td><td>Compile time</td><td>Missing semicolon: <code>int x = 5</code></td></tr>
+          <tr><td><strong>Runtime Error</strong></td><td>During execution</td><td>Division by zero: <code>int x = 5/0;</code></td></tr>
+          <tr><td><strong>Logic Error</strong></td><td>Wrong output produced</td><td>Using + instead of * for area: <code>area = l + w;</code></td></tr>
+        </table>
+        <div class="code">// Syntax Error — missing semicolon
+int x = 5    // Compiler says: '; expected'
+
+// Runtime Error — ArrayIndexOutOfBoundsException
+int[] arr = new int[3];
+arr[5] = 10;  // Runs but crashes!
+
+// Logic Error — wrong formula (no crash, wrong answer)
+double area = length + width;  // Should be length * width</div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">What is Type Casting? Explain widening and narrowing type casting.</span>
+        <div class="q-meta"><span class="year-tag">W2021</span><span class="marks-tag">4 marks</span></div>
+      </div>
+      <div class="answer">
+        <p><strong>Type Casting</strong> is converting a variable from one data type to another.</p>
+        <h3>1. Widening (Implicit) Type Casting</h3>
+        <p>Converting smaller type to larger type. Done automatically by Java.</p>
+        <p>Order: byte → short → int → long → float → double</p>
+        <div class="code">int i = 100;
+long l = i;      // auto widening: int → long
+float f = l;     // auto widening: long → float
+System.out.println(f);  // Output: 100.0</div>
+        <h3>2. Narrowing (Explicit) Type Casting</h3>
+        <p>Converting larger type to smaller type. Must be done manually. May lose data.</p>
+        <div class="code">double d = 9.99;
+int i = (int) d;     // explicit cast: double → int
+System.out.println(i);  // Output: 9 (decimal part lost!)</div>
+        <div class="warning">Narrowing can cause data loss. The fractional part is truncated, not rounded.</div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain Data Types in detail with example.</span>
+        <div class="q-meta"><span class="year-tag">W2021</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>Java has two categories of data types:</p>
+        <h3>A. Primitive Data Types (8 types)</h3>
+        <table>
+          <tr><th>Type</th><th>Size</th><th>Range</th><th>Default</th><th>Example</th></tr>
+          <tr><td>byte</td><td>1 byte</td><td>-128 to 127</td><td>0</td><td>byte b = 10;</td></tr>
+          <tr><td>short</td><td>2 bytes</td><td>-32768 to 32767</td><td>0</td><td>short s = 200;</td></tr>
+          <tr><td>int</td><td>4 bytes</td><td>-2^31 to 2^31-1</td><td>0</td><td>int i = 1000;</td></tr>
+          <tr><td>long</td><td>8 bytes</td><td>-2^63 to 2^63-1</td><td>0L</td><td>long l = 99L;</td></tr>
+          <tr><td>float</td><td>4 bytes</td><td>~3.4e-38 to 3.4e+38</td><td>0.0f</td><td>float f = 3.14f;</td></tr>
+          <tr><td>double</td><td>8 bytes</td><td>~1.7e-308 to 1.7e+308</td><td>0.0d</td><td>double d = 3.14;</td></tr>
+          <tr><td>char</td><td>2 bytes</td><td>0 to 65535 (Unicode)</td><td>'\u0000'</td><td>char c = 'A';</td></tr>
+          <tr><td>boolean</td><td>1 bit</td><td>true or false</td><td>false</td><td>boolean x = true;</td></tr>
+        </table>
+        <h3>B. Non-Primitive (Reference) Types</h3>
+        <ul>
+          <li><strong>String</strong> — <code>String name = "GTU";</code></li>
+          <li><strong>Array</strong> — <code>int[] arr = new int[5];</code></li>
+          <li><strong>Class</strong> — user-defined types</li>
+          <li><strong>Interface</strong></li>
+        </ul>
+        <div class="code">public class DataTypeDemo {
+    public static void main(String[] args) {
+        byte b = 100;
+        int i = 2147483647;   // max int value (2^31 - 1)
+        double d = 3.14159;
+        char c = 'J';
+        boolean flag = true;
+        String name = "Java";
+        System.out.println(b + " " + i + " " + d + " " + c + " " + flag + " " + name);
+    }
+}</div>
+      </div>
+    </div>
+
+    <!-- Q8: Keywords -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain Java keywords: static, final, super — with examples <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2022, W2022, W2024, S2025</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>1. static keyword</h3>
+        <p>Used for class-level variables and methods. Shared among all objects, no need to create an object.</p>
+        <div class="code">class Counter {
+    static int count = 0;   // shared variable
+    Counter() { count++; }
+    static void display() { System.out.println("Count: " + count); }
+}
+// Counter.display(); — called without object</div>
+        <h3>2. final keyword</h3>
+        <p>Used in 3 ways:</p>
+        <ul>
+          <li><strong>final variable</strong> → constant (cannot reassign)</li>
+          <li><strong>final method</strong> → cannot be overridden</li>
+          <li><strong>final class</strong> → cannot be inherited (e.g., String class)</li>
+        </ul>
+        <div class="code">final int MAX = 100;      // constant
+// MAX = 200;           // ERROR!
+
+final class ImmutableClass { }  // cannot extend
+// class Sub extends ImmutableClass { }  // ERROR!</div>
+        <h3>3. super keyword</h3>
+        <p>Refers to the parent class. Used to:</p>
+        <ul>
+          <li>Call parent class constructor: <code>super()</code></li>
+          <li>Call parent class method: <code>super.methodName()</code></li>
+          <li>Access parent class variable: <code>super.variable</code></li>
+        </ul>
+        <div class="code">class Animal {
+    String name = "Animal";
+    void sound() { System.out.println("Some sound"); }
+}
+class Dog extends Animal {
+    String name = "Dog";
+    void display() {
+        System.out.println(super.name);   // "Animal"
+        super.sound();                     // parent's method
+    }
+}</div>
+      </div>
+    </div>
+
+    <!-- Q9: Why public static void main -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Why public, static, void and args are required in main()? <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">W2024</span><span class="marks-tag">3 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">public static void main(String args[])</div>
+        <table>
+          <tr><th>Keyword</th><th>Reason</th></tr>
+          <tr><td><strong>public</strong></td><td>JVM must call main() from outside the class, so it must be accessible everywhere</td></tr>
+          <tr><td><strong>static</strong></td><td>JVM calls main() without creating an object, so it must be static (class-level method)</td></tr>
+          <tr><td><strong>void</strong></td><td>main() does not return any value to the JVM</td></tr>
+          <tr><td><strong>String args[]</strong></td><td>Receives command-line arguments as an array of strings</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Q10: Loops -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">List out different types of loops available in Java with code snippet.</span>
+        <div class="q-meta"><span class="year-tag">W2024</span><span class="marks-tag">4 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>Types of Loops in Java</h3>
+        <div class="code">// 1. for loop — when number of iterations is known
+for (int i = 1; i <= 5; i++) {
+    System.out.println(i);
+}
+
+// 2. while loop — condition checked before entry
+int i = 1;
+while (i <= 5) {
+    System.out.println(i);
+    i++;
+}
+
+// 3. do-while loop — executes at least once
+int j = 1;
+do {
+    System.out.println(j);
+    j++;
+} while (j <= 5);
+
+// 4. for-each loop — for arrays and collections
+int[] arr = {10, 20, 30};
+for (int x : arr) {
+    System.out.println(x);
+}</div>
+        <table>
+          <tr><th>Loop</th><th>Use when</th><th>Min Executions</th></tr>
+          <tr><td>for</td><td>Known iterations</td><td>0</td></tr>
+          <tr><td>while</td><td>Condition-based, may skip</td><td>0</td></tr>
+          <tr><td>do-while</td><td>Must run at least once</td><td>1</td></tr>
+          <tr><td>for-each</td><td>Iterating collections/arrays</td><td>0</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Q11: Arrays -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain about arrays, types of arrays and array methods.</span>
+        <div class="q-meta"><span class="year-tag">S2021</span><span class="marks-tag">3 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>An <strong>array</strong> is a collection of elements of the same data type stored in contiguous memory locations.</p>
+        <h3>Types of Arrays:</h3>
+        <div class="code">// 1. Single-dimensional array
+int[] arr = new int[5];
+int[] arr2 = {10, 20, 30, 40, 50};
+
+// 2. Multi-dimensional array (2D)
+int[][] matrix = new int[3][3];
+int[][] m2 = {{1,2,3},{4,5,6},{7,8,9}};
+
+// 3. Jagged array (rows of different lengths)
+int[][] jagged = new int[3][];
+jagged[0] = new int[2];
+jagged[1] = new int[4];
+jagged[2] = new int[1];</div>
+        <h3>Useful Array Methods (from java.util.Arrays):</h3>
+        <div class="code">import java.util.Arrays;
+int[] arr = {5, 2, 8, 1, 9};
+Arrays.sort(arr);              // sort in ascending order
+int idx = Arrays.binarySearch(arr, 8);  // search (must be sorted)
+Arrays.fill(arr, 0);           // fill all elements with 0
+int[] copy = Arrays.copyOf(arr, 3);     // copy first 3 elements
+System.out.println(Arrays.toString(arr));  // print array</div>
+      </div>
+    </div>
+
+    <!-- Q12: Garbage Collection -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain Java garbage collection mechanism / Explain the concept of finalization.</span>
+        <div class="q-meta"><span class="year-tag">W2022, S2021, W2023</span><span class="marks-tag">3–4 marks</span></div>
+      </div>
+      <div class="answer">
+        <p><strong>Garbage Collection (GC)</strong> is Java's automatic memory management. The JVM automatically reclaims memory occupied by objects that are no longer reachable/referenced.</p>
+        <h3>How it works:</h3>
+        <ul>
+          <li>JVM tracks all object references</li>
+          <li>When an object has no references pointing to it, it becomes eligible for GC</li>
+          <li>GC runs in the background (daemon thread) and frees that memory</li>
+          <li>Programmer cannot force GC but can suggest: <code>System.gc();</code></li>
+        </ul>
+        <h3>finalize() method:</h3>
+        <p>Called by GC just before destroying an object. Used to perform cleanup (like closing files). Defined in Object class.</p>
+        <div class="code">class MyClass {
+    protected void finalize() throws Throwable {
+        System.out.println("Object is being garbage collected");
+        // close resources here
+    }
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        obj = null;          // eligible for GC
+        System.gc();         // suggest GC (not guaranteed)
+    }
+}</div>
+        <div class="note">Why no destructors in Java? Because GC handles memory automatically. You don't know when memory will be freed, so destructors would be unpredictable.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CHAPTER 2: OOP Concepts -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch2">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 2: OOP Concepts — Encapsulation, Abstraction, OOP Characteristics</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: OOP principles, Encapsulation, Abstraction, OOP design hints</div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Define object oriented concepts / List OOP characteristics and describe inheritance <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021, W2022, W2024</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>The 4 Pillars of OOP:</h3>
+        <div class="diagram">
+          <svg viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg">
+            <text x="250" y="25" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="bold">Object Oriented Programming</text>
+            <rect x="10" y="45" width="110" height="70" rx="8" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="65" y="75" text-anchor="middle" fill="#c4b5fd" font-size="12">Encapsulation</text>
+            <text x="65" y="95" text-anchor="middle" fill="#9ca3af" font-size="9">Hiding data</text>
+            <text x="65" y="108" text-anchor="middle" fill="#9ca3af" font-size="9">using private</text>
+            <rect x="135" y="45" width="110" height="70" rx="8" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="190" y="75" text-anchor="middle" fill="#93c5fd" font-size="12">Abstraction</text>
+            <text x="190" y="95" text-anchor="middle" fill="#9ca3af" font-size="9">Hiding complexity</text>
+            <text x="190" y="108" text-anchor="middle" fill="#9ca3af" font-size="9">show essentials</text>
+            <rect x="260" y="45" width="110" height="70" rx="8" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="315" y="75" text-anchor="middle" fill="#86efac" font-size="12">Inheritance</text>
+            <text x="315" y="95" text-anchor="middle" fill="#9ca3af" font-size="9">Reusing code</text>
+            <text x="315" y="108" text-anchor="middle" fill="#9ca3af" font-size="9">extends keyword</text>
+            <rect x="385" y="45" width="110" height="70" rx="8" fill="#2a1a1a" stroke="#ef4444"/>
+            <text x="440" y="75" text-anchor="middle" fill="#fca5a5" font-size="12">Polymorphism</text>
+            <text x="440" y="95" text-anchor="middle" fill="#9ca3af" font-size="9">Many forms</text>
+            <text x="440" y="108" text-anchor="middle" fill="#9ca3af" font-size="9">override/overload</text>
+          </svg>
+        </div>
+        <h3>Encapsulation</h3>
+        <p>Wrapping data (fields) and methods into a single unit (class) and restricting direct access using private access modifier. Data is accessed through getter/setter methods.</p>
+        <div class="code">class Student {
+    private int age;         // hidden
+    public void setAge(int a) { if(a>0) age = a; }  // controlled access
+    public int getAge() { return age; }
+}</div>
+        <h3>Abstraction</h3>
+        <p>Showing only relevant features and hiding implementation details. Achieved via abstract classes and interfaces.</p>
+        <h3>Inheritance</h3>
+        <p>One class acquires properties and methods of another class. Promotes code reuse. Uses <code>extends</code> keyword.</p>
+        <div class="code">class Animal { void eat() { System.out.println("eating"); } }
+class Dog extends Animal { void bark() { System.out.println("barking"); } }
+// Dog has both eat() and bark()</div>
+        <h3>Polymorphism</h3>
+        <p>Ability to take many forms. Same method name behaves differently (overloading) or same call works on different objects (overriding).</p>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain Encapsulation and Abstraction in detail.</span>
+        <div class="q-meta"><span class="year-tag">S2021, S2022</span><span class="marks-tag">4 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>Encapsulation</h3>
+        <ul>
+          <li>Binding of data and methods into a class</li>
+          <li>Data is declared <code>private</code></li>
+          <li>Access via public getter/setter methods</li>
+          <li>Benefits: data hiding, validation, security, maintainability</li>
+        </ul>
+        <div class="code">class BankAccount {
+    private double balance;        // hidden from outside
+    public void deposit(double amt) {
+        if (amt > 0) balance += amt;
+    }
+    public double getBalance() { return balance; }
+}</div>
+        <h3>Abstraction</h3>
+        <ul>
+          <li>Hiding implementation complexity, showing only necessary features</li>
+          <li>Like a car: driver uses steering/pedals without knowing engine internals</li>
+          <li>Achieved via: Abstract classes (<code>abstract</code> keyword) and Interfaces</li>
+        </ul>
+        <div class="code">abstract class Shape {
+    abstract double area();     // abstract — no body, must override
+    void display() { System.out.println("Area: " + area()); }
+}
+class Circle extends Shape {
+    double r;
+    Circle(double r) { this.r = r; }
+    double area() { return Math.PI * r * r; }    // implementation
+}</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Describe Inheritance, Polymorphism and Data Encapsulation characteristics of OOP with example.</span>
+        <div class="q-meta"><span class="year-tag">W2024</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>1. Inheritance</h3>
+        <p>A subclass inherits fields and methods from a superclass. Java supports single, multilevel, and hierarchical inheritance (not multiple class inheritance).</p>
+        <div class="code">class Vehicle {
+    String brand = "Ford";
+    void honk() { System.out.println("Tuut!"); }
+}
+class Car extends Vehicle {
+    int modelYear = 2022;
+}
+class Main {
+    public static void main(String[] args) {
+        Car myCar = new Car();
+        myCar.honk();                       // inherited
+        System.out.println(myCar.brand);   // inherited
+        System.out.println(myCar.modelYear);
+    }
+}</div>
+        <h3>2. Polymorphism</h3>
+        <p>Same interface used for different underlying data types.</p>
+        <div class="code">class Animal {
+    void sound() { System.out.println("..."); }
+}
+class Dog extends Animal {
+    void sound() { System.out.println("Woof"); }  // overriding
+}
+class Cat extends Animal {
+    void sound() { System.out.println("Meow"); }
+}
+// Runtime polymorphism:
+Animal a = new Dog();  a.sound();  // Woof
+a = new Cat();         a.sound();  // Meow</div>
+        <h3>3. Encapsulation</h3>
+        <div class="code">class Person {
+    private String name;
+    private int age;
+    public String getName() { return name; }
+    public void setName(String n) { this.name = n; }
+    public int getAge() { return age; }
+    public void setAge(int a) { if (a >= 0) this.age = a; }
+}</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CHAPTER 3: Classes, Objects, Constructors -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch3">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 3: Classes, Objects, Constructors, this keyword</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: Class vs Object, Constructors, Constructor Overloading, Copy Constructor, this keyword, static members, access modifiers</div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Define and explain object and class in Java with appropriate example. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2025</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>Class</h3>
+        <p>A <strong>class</strong> is a blueprint/template for creating objects. It defines the properties (fields) and behaviors (methods) that objects will have. A class does not occupy memory by itself.</p>
+        <h3>Object</h3>
+        <p>An <strong>object</strong> is an instance of a class. It is the actual entity that exists in memory with specific values for its fields.</p>
+        <div class="diagram">
+          <svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="20" width="150" height="110" rx="8" fill="#1e1b4b" stroke="#7c3aed" stroke-width="2"/>
+            <text x="85" y="42" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="bold">Class: Car</text>
+            <line x1="10" y1="50" x2="160" y2="50" stroke="#7c3aed" stroke-width="1"/>
+            <text x="85" y="68" text-anchor="middle" fill="#9ca3af" font-size="11">Fields: color, speed</text>
+            <text x="85" y="85" text-anchor="middle" fill="#9ca3af" font-size="11">Methods: drive()</text>
+            <text x="85" y="102" text-anchor="middle" fill="#9ca3af" font-size="11">brake(), honk()</text>
+            <text x="85" y="120" text-anchor="middle" fill="#7c3aed" font-size="10">(Blueprint)</text>
+            <text x="195" y="85" fill="#a78bfa" font-size="22">→</text>
+            <rect x="220" y="20" width="120" height="60" rx="8" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="280" y="45" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="bold">Object: car1</text>
+            <text x="280" y="62" text-anchor="middle" fill="#9ca3af" font-size="10">color="Red", speed=100</text>
+            <text x="280" y="75" text-anchor="middle" fill="#6b7280" font-size="9">(Instance in memory)</text>
+            <rect x="360" y="20" width="120" height="60" rx="8" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="420" y="45" text-anchor="middle" fill="#86efac" font-size="11" font-weight="bold">Object: car2</text>
+            <text x="420" y="62" text-anchor="middle" fill="#9ca3af" font-size="10">color="Blue", speed=80</text>
+            <text x="420" y="75" text-anchor="middle" fill="#6b7280" font-size="9">(Another instance)</text>
+          </svg>
+        </div>
+        <div class="code">// Class definition
+class Car {
+    // Fields (instance variables)
+    String color;
+    int speed;
+    
+    // Constructor
+    Car(String c, int s) {
+        this.color = c;
+        this.speed = s;
+    }
+    
+    // Method
+    void drive() {
+        System.out.println(color + " car driving at " + speed + " km/h");
+    }
+}
+
+// Main class — creating objects
+public class Main {
+    public static void main(String[] args) {
+        Car car1 = new Car("Red", 100);    // object 1
+        Car car2 = new Car("Blue", 80);    // object 2
+        car1.drive();   // Red car driving at 100 km/h
+        car2.drive();   // Blue car driving at 80 km/h
+    }
+}</div>
+        <h3>Relationship between Object and Class:</h3>
+        <ul>
+          <li>Class is like a cookie cutter; objects are the cookies</li>
+          <li>Class defines the structure; objects hold actual data</li>
+          <li>Multiple objects can be created from one class</li>
+          <li>Objects are created with <code>new</code> keyword and stored in heap memory</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Define constructor. How objects are constructed? Explain constructor overloading. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021, W2022, W2021, S2022, S2025, W2024</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>Constructor</h3>
+        <p>A constructor is a special method that is automatically called when an object is created. It initializes the object's state.</p>
+        <h3>Features of Constructors:</h3>
+        <ul>
+          <li>Same name as the class</li>
+          <li>No return type (not even void)</li>
+          <li>Called automatically with <code>new</code> keyword</li>
+          <li>Can be overloaded</li>
+          <li>If not defined, Java provides a default no-arg constructor</li>
+        </ul>
+        <h3>Types of Constructors:</h3>
+        <div class="code">class Student {
+    String name;
+    int age;
+    
+    // 1. Default (no-arg) constructor
+    Student() {
+        name = "Unknown";
+        age = 0;
+    }
+    
+    // 2. Parameterized constructor
+    Student(String n, int a) {
+        this.name = n;
+        this.age = a;
+    }
+    
+    // 3. Copy constructor
+    Student(Student s) {
+        this.name = s.name;
+        this.age = s.age;
+    }
+    
+    void display() {
+        System.out.println(name + " - " + age);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student();              // default
+        Student s2 = new Student("Rahul", 20);  // parameterized
+        Student s3 = new Student(s2);            // copy
+        s1.display();   // Unknown - 0
+        s2.display();   // Rahul - 20
+        s3.display();   // Rahul - 20
+    }
+}</div>
+        <h3>Constructor Overloading</h3>
+        <p>Having multiple constructors in the same class with different parameter lists. Java distinguishes them by the number/type of arguments.</p>
+        <div class="code">class Box {
+    double width, height, depth;
+    
+    Box() { width = height = depth = 1; }
+    Box(double w) { width = height = depth = w; }
+    Box(double w, double h, double d) { width=w; height=h; depth=d; }
+    
+    double volume() { return width * height * depth; }
+}
+// Box b1 = new Box();         // 1x1x1
+// Box b2 = new Box(5);        // 5x5x5
+// Box b3 = new Box(2,3,4);    // 2x3x4</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain Shallow copy and Deep copy constructor.</span>
+        <div class="q-meta"><span class="year-tag">S2022</span><span class="marks-tag">4 marks</span></div>
+      </div>
+      <div class="answer">
+        <table>
+          <tr><th>Shallow Copy</th><th>Deep Copy</th></tr>
+          <tr><td>Copies reference (both objects point to same memory)</td><td>Creates completely new copy (independent memory)</td></tr>
+          <tr><td>Changes in copy affect original</td><td>Changes in copy do NOT affect original</td></tr>
+          <tr><td>Default assignment (=) does shallow copy</td><td>Must implement manually</td></tr>
+        </table>
+        <div class="code">class Address {
+    String city;
+    Address(String c) { this.city = c; }
+}
+
+class Person {
+    String name;
+    Address addr;   // reference type
+    
+    Person(String n, Address a) { name = n; addr = a; }
+    
+    // Shallow copy constructor
+    Person(Person p) {
+        this.name = p.name;
+        this.addr = p.addr;     // same Address object! (shallow)
+    }
+    
+    // Deep copy constructor
+    Person deepCopy(Person p) {
+        Person copy = new Person(p.name, new Address(p.addr.city));  // new Address!
+        return copy;
+    }
+}
+// With shallow copy: if you change p2.addr.city, p1.addr.city also changes!
+// With deep copy: p1 and p2 have completely independent data.</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">What is the use of this keyword? How is it different from super keyword?</span>
+        <div class="q-meta"><span class="year-tag">S2023, W2022, S2024, W2021</span><span class="marks-tag">3–4 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>this keyword</h3>
+        <p>Refers to the <strong>current object</strong> of the class. Used to:</p>
+        <ul>
+          <li>Refer to current class instance variable (resolve name conflict)</li>
+          <li>Call current class constructor: <code>this()</code></li>
+          <li>Pass current object as argument</li>
+        </ul>
+        <div class="code">class Student {
+    String name;
+    Student(String name) {
+        this.name = name;   // this.name = class field, name = parameter
+    }
+    void display() {
+        System.out.println(this.name);  // this refers to current object
+    }
+}</div>
+        <h3>super keyword</h3>
+        <p>Refers to the <strong>parent class</strong>. Used to:</p>
+        <ul>
+          <li>Call parent constructor: <code>super()</code></li>
+          <li>Call parent method: <code>super.method()</code></li>
+          <li>Access parent field: <code>super.field</code></li>
+        </ul>
+        <table>
+          <tr><th>this</th><th>super</th></tr>
+          <tr><td>Refers to current object</td><td>Refers to parent class</td></tr>
+          <tr><td>Used in same class</td><td>Used in subclass</td></tr>
+          <tr><td>this() calls same-class constructor</td><td>super() calls parent constructor</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Discuss public, private, protected and default access modifiers. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021, W2022, S2023, S2024, W2024, S2025</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <table>
+          <tr><th>Modifier</th><th>Same Class</th><th>Same Package</th><th>Subclass</th><th>Other Package</th></tr>
+          <tr><td><strong>private</strong></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+          <tr><td><strong>default</strong> (no modifier)</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
+          <tr><td><strong>protected</strong></td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
+          <tr><td><strong>public</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+        </table>
+        <div class="code">class Demo {
+    private int a = 1;      // accessible only in Demo
+    int b = 2;              // default: accessible in same package
+    protected int c = 3;   // accessible in subclasses + same package
+    public int d = 4;       // accessible everywhere
+}</div>
+        <ul>
+          <li><strong>private:</strong> Most restrictive. Use for data hiding (encapsulation).</li>
+          <li><strong>default:</strong> Package-level access. No keyword needed.</li>
+          <li><strong>protected:</strong> Used in inheritance — subclasses can access parent's protected members.</li>
+          <li><strong>public:</strong> No restriction. Use for methods that should be globally accessible.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain static variable and static method with example. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">W2021, S2021, W2024</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>The <code>static</code> keyword makes a member belong to the <strong>class</strong> rather than to any specific object.</p>
+        <h3>Static Variable:</h3>
+        <ul>
+          <li>Shared among all objects of the class</li>
+          <li>Only one copy exists regardless of how many objects are created</li>
+          <li>Accessed as: <code>ClassName.variableName</code></li>
+        </ul>
+        <h3>Static Method:</h3>
+        <ul>
+          <li>Can be called without creating an object</li>
+          <li>Cannot access non-static (instance) variables directly</li>
+          <li>Cannot use <code>this</code> or <code>super</code></li>
+        </ul>
+        <div class="code">class Counter {
+    static int count = 0;    // static variable — shared
+    int id;
+    
+    Counter() {
+        count++;             // increments shared counter
+        id = count;          // unique id for each object
+    }
+    
+    static void showCount() {    // static method
+        System.out.println("Total objects: " + count);
+    }
+    
+    void showId() {
+        System.out.println("Object ID: " + id);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Counter c1 = new Counter();
+        Counter c2 = new Counter();
+        Counter c3 = new Counter();
+        Counter.showCount();   // Total objects: 3
+        c1.showId();           // Object ID: 1
+    }
+}</div>
+      </div>
+    </div>
+
+    <!-- Employee program -->
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Create Employee class with id, name, monthly_salary. Demonstrate with yearly salary and 10% raise. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2023, W2024</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">class Employee {
+    private String id;
+    private String name;
+    private double monthlySalary;
+    
+    // Default constructor
+    Employee() {
+        id = "E000";
+        name = "Unknown";
+        monthlySalary = 0.0;
+    }
+    
+    // Parameterized constructor
+    Employee(String id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.monthlySalary = (salary > 0) ? salary : 0.0;
+    }
+    
+    // Getters and Setters
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public double getMonthlySalary() { return monthlySalary; }
+    public void setMonthlySalary(double s) { monthlySalary = (s>0) ? s : 0; }
+    
+    // Get yearly salary
+    public double getYearlySalary() { return monthlySalary * 12; }
+    
+    // Display
+    public void displayEmployee() {
+        System.out.println("ID: " + id + ", Name: " + name);
+        System.out.println("Monthly: " + monthlySalary + ", Yearly: " + getYearlySalary());
+    }
+}
+
+public class EmployeeTest {
+    public static void main(String[] args) {
+        Employee e1 = new Employee("E001", "Rahul Shah", 50000);
+        Employee e2 = new Employee("E002", "Priya Patel", 60000);
+        
+        System.out.println("=== Before Raise ===");
+        e1.displayEmployee();
+        e2.displayEmployee();
+        
+        // 10% raise
+        e1.setMonthlySalary(e1.getMonthlySalary() * 1.10);
+        e2.setMonthlySalary(e2.getMonthlySalary() * 1.10);
+        
+        System.out.println("\n=== After 10% Raise ===");
+        e1.displayEmployee();
+        e2.displayEmployee();
+    }
+}
+/* Output:
+=== Before Raise ===
+ID: E001, Name: Rahul Shah
+Monthly: 50000.0, Yearly: 600000.0
+...
+=== After 10% Raise ===
+ID: E001, Name: Rahul Shah
+Monthly: 55000.0, Yearly: 660000.0
+*/</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CHAPTER 4: Inheritance -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch4">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 4: Inheritance</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: Types of inheritance, super keyword, final keyword, design hints, multilevel, hierarchical, multiple via interface</div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Define/explain types of inheritance. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2022, W2022, S2023, S2025</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="diagram">
+          <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Single -->
+            <text x="60" y="15" text-anchor="middle" fill="#9ca3af" font-size="10">Single</text>
+            <rect x="30" y="20" width="60" height="30" rx="4" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="60" y="40" text-anchor="middle" fill="#c4b5fd" font-size="10">A (parent)</text>
+            <line x1="60" y1="50" x2="60" y2="70" stroke="#7c3aed" stroke-width="1.5"/>
+            <polygon points="55,70 65,70 60,80" fill="#7c3aed"/>
+            <rect x="30" y="80" width="60" height="30" rx="4" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="60" y="100" text-anchor="middle" fill="#93c5fd" font-size="10">B (child)</text>
+            <!-- Multilevel -->
+            <text x="190" y="15" text-anchor="middle" fill="#9ca3af" font-size="10">Multilevel</text>
+            <rect x="160" y="20" width="60" height="25" rx="4" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="190" y="37" text-anchor="middle" fill="#c4b5fd" font-size="9">A</text>
+            <line x1="190" y1="45" x2="190" y2="60" stroke="#7c3aed" stroke-width="1.5"/>
+            <polygon points="185,60 195,60 190,68" fill="#7c3aed"/>
+            <rect x="160" y="68" width="60" height="25" rx="4" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="190" y="85" text-anchor="middle" fill="#93c5fd" font-size="9">B</text>
+            <line x1="190" y1="93" x2="190" y2="108" stroke="#3b82f6" stroke-width="1.5"/>
+            <polygon points="185,108 195,108 190,116" fill="#3b82f6"/>
+            <rect x="160" y="116" width="60" height="25" rx="4" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="190" y="133" text-anchor="middle" fill="#86efac" font-size="9">C</text>
+            <!-- Hierarchical -->
+            <text x="340" y="15" text-anchor="middle" fill="#9ca3af" font-size="10">Hierarchical</text>
+            <rect x="310" y="20" width="60" height="30" rx="4" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="340" y="40" text-anchor="middle" fill="#c4b5fd" font-size="10">A</text>
+            <line x1="320" y1="50" x2="300" y2="70" stroke="#7c3aed" stroke-width="1.5"/>
+            <line x1="360" y1="50" x2="380" y2="70" stroke="#7c3aed" stroke-width="1.5"/>
+            <polygon points="295,70 305,70 300,80" fill="#7c3aed"/>
+            <polygon points="375,70 385,70 380,80" fill="#7c3aed"/>
+            <rect x="270" y="80" width="60" height="30" rx="4" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="300" y="100" text-anchor="middle" fill="#93c5fd" font-size="10">B</text>
+            <rect x="350" y="80" width="60" height="30" rx="4" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="380" y="100" text-anchor="middle" fill="#86efac" font-size="10">C</text>
+            <!-- Multiple via Interface -->
+            <text x="490" y="15" text-anchor="middle" fill="#9ca3af" font-size="10">Multiple(interface)</text>
+            <rect x="450" y="20" width="50" height="25" rx="4" fill="#2a1a1a" stroke="#ef4444"/>
+            <text x="475" y="37" text-anchor="middle" fill="#fca5a5" font-size="9">«I» A</text>
+            <rect x="510" y="20" width="50" height="25" rx="4" fill="#2a1a1a" stroke="#ef4444"/>
+            <text x="535" y="37" text-anchor="middle" fill="#fca5a5" font-size="9">«I» B</text>
+            <line x1="475" y1="45" x2="490" y2="80" stroke="#ef4444" stroke-width="1.5"/>
+            <line x1="535" y1="45" x2="510" y2="80" stroke="#ef4444" stroke-width="1.5"/>
+            <rect x="470" y="80" width="60" height="30" rx="4" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="500" y="100" text-anchor="middle" fill="#86efac" font-size="9">C implements</text>
+          </svg>
+        </div>
+        <table>
+          <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+          <tr><td>Single</td><td>One class extends one class</td><td>B extends A</td></tr>
+          <tr><td>Multilevel</td><td>Chain of inheritance</td><td>C extends B extends A</td></tr>
+          <tr><td>Hierarchical</td><td>Many classes extend one</td><td>B,C extend A</td></tr>
+          <tr><td>Multiple</td><td>Via interfaces only in Java</td><td>C implements A,B</td></tr>
+          <tr><td>Hybrid</td><td>Combination of above</td><td>Via interfaces</td></tr>
+        </table>
+        <div class="code">// Multilevel inheritance example
+class Animal {
+    void eat() { System.out.println("Eating..."); }
+}
+class Dog extends Animal {
+    void bark() { System.out.println("Barking..."); }
+}
+class Puppy extends Dog {
+    void weep() { System.out.println("Weeping..."); }
+}
+// Puppy has: eat(), bark(), weep()</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain inheritance and polymorphism in Java with examples. State design hints for class and inheritance. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>Inheritance in Java</h3>
+        <p>Uses <code>extends</code> keyword. Child class inherits all non-private members of parent.</p>
+        <div class="code">class Shape {
+    double color;
+    void draw() { System.out.println("Drawing shape"); }
+}
+class Circle extends Shape {
+    double radius;
+    Circle(double r) { this.radius = r; }
+    void area() { System.out.println("Area: " + Math.PI * radius * radius); }
+    @Override
+    void draw() { System.out.println("Drawing circle"); }  // overriding
+}
+// Circle object has: color, draw(), area()</div>
+        <h3>Design Hints for Classes:</h3>
+        <ul>
+          <li>Always keep data private</li>
+          <li>Always initialize data</li>
+          <li>Don't use too many basic types in one class — consider decomposing</li>
+          <li>Not all fields need getters/setters — only expose what is needed</li>
+          <li>Break up classes with too many responsibilities</li>
+          <li>Class names and method names should reflect their purpose</li>
+          <li>Prefer immutable classes where possible</li>
+        </ul>
+        <h3>Design Hints for Inheritance:</h3>
+        <ul>
+          <li>Place common operations and fields in the superclass</li>
+          <li>Don't use inheritance unless there is an "is-a" relationship</li>
+          <li>Don't use inheritance just for code reuse — use composition instead</li>
+          <li>Use polymorphism, not type information</li>
+          <li>Don't overuse reflection</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Write a Java program to implement multiple inheritance for calculating area of circle and square.</span>
+        <div class="q-meta"><span class="year-tag">S2021</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>Java doesn't support multiple class inheritance, so we use interfaces:</p>
+        <div class="code">interface CircleArea {
+    double PI = 3.14159;
+    double circleArea(double r);
+}
+
+interface SquareArea {
+    double squareArea(double s);
+}
+
+class Shape implements CircleArea, SquareArea {
+    public double circleArea(double r) {
+        return PI * r * r;
+    }
+    public double squareArea(double s) {
+        return s * s;
+    }
+}
+
+public class MultipleInheritance {
+    public static void main(String[] args) {
+        Shape obj = new Shape();
+        System.out.println("Area of Circle (r=5): " + obj.circleArea(5));
+        System.out.println("Area of Square (s=4): " + obj.squareArea(4));
+    }
+}
+// Output:
+// Area of Circle (r=5): 78.53975
+// Area of Square (s=4): 16.0</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Consider class A as parent of class B. Which statements will show compilation error?</span>
+        <div class="q-meta"><span class="year-tag">S2022</span><span class="marks-tag">4 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">class A { }
+class B extends A { }
+
+// i.  A a = new A();   ✅ VALID — A reference, A object
+// ii. A a = new B();   ✅ VALID — A reference, B object (upcasting/polymorphism)
+// iii.B b = new A();   ❌ COMPILE ERROR — B reference cannot hold A object
+// iv. B b = new B();   ✅ VALID — B reference, B object</div>
+        <div class="note"><strong>Rule:</strong> A parent reference can point to child object (upcasting) — this is polymorphism. But a child reference CANNOT point to parent object (that would be downcasting which is unsafe without explicit cast).</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CHAPTER 5: Polymorphism -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch5">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 5: Polymorphism — Overloading, Overriding, Dynamic Binding</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: Method Overloading, Method Overriding, Dynamic Binding, Dynamic Method Dispatch, Runtime Polymorphism</div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain types of polymorphism / Explain overloading and overriding. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021, S2022, W2022, S2023, S2024, W2024, S2025</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>Types of Polymorphism</h3>
+        <table>
+          <tr><th>Aspect</th><th>Compile-time (Overloading)</th><th>Runtime (Overriding)</th></tr>
+          <tr><td>Also called</td><td>Static polymorphism</td><td>Dynamic polymorphism</td></tr>
+          <tr><td>Binding</td><td>At compile time</td><td>At runtime</td></tr>
+          <tr><td>Method</td><td>Same name, different params</td><td>Same name, same params</td></tr>
+          <tr><td>Inheritance</td><td>Not required</td><td>Required</td></tr>
+          <tr><td>Performance</td><td>Faster</td><td>Slightly slower</td></tr>
+        </table>
+        <h3>1. Method Overloading (Compile-time)</h3>
+        <div class="code">class Calculator {
+    int add(int a, int b) { return a + b; }
+    double add(double a, double b) { return a + b; }
+    int add(int a, int b, int c) { return a + b + c; }
+    String add(String a, String b) { return a + b; }
+}
+// Same name 'add', different parameters — decided at compile time</div>
+        <h3>2. Method Overriding (Runtime)</h3>
+        <div class="code">class Animal {
+    void sound() { System.out.println("Animal makes a sound"); }
+}
+class Dog extends Animal {
+    @Override
+    void sound() { System.out.println("Dog barks"); }
+}
+class Cat extends Animal {
+    @Override
+    void sound() { System.out.println("Cat meows"); }
+}
+public class Main {
+    public static void main(String[] args) {
+        Animal a;
+        a = new Dog(); a.sound();  // Dog barks   (decided at runtime!)
+        a = new Cat(); a.sound();  // Cat meows
+    }
+}</div>
+        <div class="note">Rules for overriding: Same method name, same parameters, same return type, not more restrictive access modifier, only in subclass.</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">What is Dynamic Binding? Show with example how it works. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021, W2021, W2024</span><span class="marks-tag">3–4 marks</span></div>
+      </div>
+      <div class="answer">
+        <p><strong>Dynamic Binding (Late Binding)</strong> — the method call is resolved at <strong>runtime</strong> based on the actual object type, not the reference type.</p>
+        <p>Also called <strong>Dynamic Method Dispatch</strong>.</p>
+        <div class="code">class Shape {
+    void draw() { System.out.println("Drawing a shape"); }
+}
+class Circle extends Shape {
+    void draw() { System.out.println("Drawing a Circle"); }
+}
+class Rectangle extends Shape {
+    void draw() { System.out.println("Drawing a Rectangle"); }
+}
+
+public class DynamicBinding {
+    public static void main(String[] args) {
+        Shape s;    // reference of parent type
+
+        s = new Circle();       // actual object: Circle
+        s.draw();               // "Drawing a Circle" — decided at runtime
+
+        s = new Rectangle();    // actual object: Rectangle
+        s.draw();               // "Drawing a Rectangle" — decided at runtime
+    }
+}
+/* 
+   's' is of type Shape, but the JVM checks the ACTUAL object 
+   at runtime and calls the appropriate overridden method.
+   This is Dynamic Binding!
+*/</div>
+        <div class="diagram">
+          <svg viewBox="0 0 420 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="30" width="100" height="40" rx="6" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="60" y="55" text-anchor="middle" fill="#c4b5fd" font-size="11">Shape s = ...</text>
+            <text x="120" y="55" fill="#a78bfa" font-size="18">→</text>
+            <rect x="140" y="10" width="100" height="35" rx="4" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="190" y="32" text-anchor="middle" fill="#93c5fd" font-size="11">new Circle()</text>
+            <rect x="140" y="55" width="100" height="35" rx="4" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="190" y="77" text-anchor="middle" fill="#86efac" font-size="11">new Rectangle()</text>
+            <text x="255" y="35" fill="#a78bfa" font-size="14">→</text>
+            <text x="255" y="78" fill="#a78bfa" font-size="14">→</text>
+            <rect x="280" y="10" width="120" height="35" rx="4" fill="#2a1a00" stroke="#f59e0b"/>
+            <text x="340" y="32" text-anchor="middle" fill="#fcd34d" font-size="10">s.draw() → Circle.draw()</text>
+            <rect x="280" y="55" width="120" height="35" rx="4" fill="#2a1a00" stroke="#f59e0b"/>
+            <text x="340" y="77" text-anchor="middle" fill="#fcd34d" font-size="10">s.draw() → Rect.draw()</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain method overriding and method overloading in Java.</span>
+        <div class="q-meta"><span class="year-tag">S2025, W2024</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>Already covered above. Key additional points:</p>
+        <h3>When to use Overloading vs Overriding:</h3>
+        <ul>
+          <li><strong>Overloading:</strong> When you want the same operation to work with different types of input (e.g., print(int), print(String))</li>
+          <li><strong>Overriding:</strong> When a subclass needs a specialized version of an inherited method</li>
+        </ul>
+        <h3>Important Rules for Overriding:</h3>
+        <ul>
+          <li>Cannot override <code>final</code> methods</li>
+          <li>Cannot override <code>static</code> methods (that's method hiding)</li>
+          <li>Cannot override <code>private</code> methods</li>
+          <li>Access modifier cannot be more restrictive in child</li>
+          <li>Use <code>@Override</code> annotation for safety</li>
+        </ul>
+        <div class="code">// S2023 code analysis question:
+class A { int max(int x, int y) { return (x>y) ? x : y; } }
+class B extends A {
+    int max(int x, int y) { return super.max(y, x) - 10; }  // overriding
+}
+class C extends B {
+    int max(int x, int y) { return super.max(x+10, y+2); }  // overriding B's method
+}
+// C c = new C();
+// c.max(12, 29):
+//   C.max(12,29) -> super.max(12+10, 29+2) = B.max(22, 31)
+//   B.max(22,31) -> super.max(31,22)-10 = A.max(31,22)-10 = 31-10 = 21
+// Output: 21</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CHAPTER 6: Interfaces & Abstract Classes -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch6">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 6: Interfaces, Abstract Classes, Inner Classes, Packages</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: Interface, Abstract class, Comparison, Inner classes, Packages, final class/method</div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">What is an interface? Explain with example. Differentiate Abstract class vs Interface. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021, W2021, W2022, S2023, S2024, W2024, S2025, W2025</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>Interface</h3>
+        <p>An interface is a 100% abstract type that defines a contract (set of methods) that implementing classes must provide. It cannot have instance variables or constructors.</p>
+        <ul>
+          <li>All methods are <code>public abstract</code> by default</li>
+          <li>All variables are <code>public static final</code> by default</li>
+          <li>A class can implement multiple interfaces (multiple inheritance)</li>
+          <li>Uses <code>implements</code> keyword</li>
+        </ul>
+        <div class="code">interface Printable {
+    int MAX = 100;          // public static final int MAX = 100
+    void print();           // public abstract void print()
+    void display();
+}
+
+class Document implements Printable {
+    public void print() { System.out.println("Printing document"); }
+    public void display() { System.out.println("Displaying document"); }
+}
+
+// Multiple interface implementation
+interface Saveable { void save(); }
+interface Loadable { void load(); }
+
+class FileManager implements Saveable, Loadable {
+    public void save() { System.out.println("Saving..."); }
+    public void load() { System.out.println("Loading..."); }
+}</div>
+        <h3>Abstract Class vs Interface</h3>
+        <table>
+          <tr><th>Feature</th><th>Abstract Class</th><th>Interface</th></tr>
+          <tr><td>Methods</td><td>Abstract + concrete</td><td>Abstract only (Java 7); default/static in Java 8+</td></tr>
+          <tr><td>Variables</td><td>Any type</td><td>Only public static final</td></tr>
+          <tr><td>Constructor</td><td>Can have</td><td>Cannot have</td></tr>
+          <tr><td>Inheritance</td><td>extends (single)</td><td>implements (multiple)</td></tr>
+          <tr><td>Access modifiers</td><td>Any</td><td>public by default</td></tr>
+          <tr><td>Use when</td><td>Partial implementation</td><td>Full contract/multiple inheritance</td></tr>
+        </table>
+        <div class="code">abstract class Vehicle {
+    String brand;
+    abstract void start();     // must override
+    void stop() { System.out.println("Stopping"); }  // concrete
+}
+
+class Car extends Vehicle {
+    void start() { System.out.println("Car starting"); }
+}</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain concept of inner classes and their types. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021, W2021</span><span class="marks-tag">4–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>An <strong>inner class</strong> is a class defined inside another class. It has access to all members (including private) of the outer class.</p>
+        <h3>Types of Inner Classes:</h3>
+        <h4>1. Member Inner Class (Regular)</h4>
+        <div class="code">class Outer {
+    private int x = 10;
+    class Inner {   // member inner class
+        void show() { System.out.println("x = " + x); }  // can access private
+    }
+}
+// Usage: Outer.Inner obj = new Outer().new Inner();</div>
+        <h4>2. Static Nested Class</h4>
+        <div class="code">class Outer {
+    static int y = 20;
+    static class StaticNested {
+        void show() { System.out.println("y = " + y); }
+    }
+}
+// Usage: Outer.StaticNested obj = new Outer.StaticNested();</div>
+        <h4>3. Local Inner Class</h4>
+        <div class="code">class Outer {
+    void method() {
+        class Local {   // defined inside a method
+            void show() { System.out.println("Local inner"); }
+        }
+        Local l = new Local();
+        l.show();
+    }
+}</div>
+        <h4>4. Anonymous Inner Class</h4>
+        <div class="code">abstract class Shape { abstract void draw(); }
+// Creating anonymous class implementing Shape:
+Shape s = new Shape() {
+    void draw() { System.out.println("Drawing anonymous shape"); }
+};
+s.draw();</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">What is a Package? Benefits? Steps to create and use a package. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021, W2022, W2024, S2025</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>A <strong>package</strong> is a namespace/folder that groups related classes and interfaces together.</p>
+        <h3>Benefits:</h3>
+        <ul>
+          <li>Avoids naming conflicts (two classes can have same name in different packages)</li>
+          <li>Provides access control (package-level access)</li>
+          <li>Makes code modular, organized, and reusable</li>
+          <li>Helps in maintaining large projects</li>
+        </ul>
+        <h3>Steps to Create a Package:</h3>
+        <div class="code">// Step 1: Create file with package declaration at top
+// File: mypackage/Calculator.java
+package mypackage;
+
+public class Calculator {
+    public int add(int a, int b) { return a + b; }
+    public int multiply(int a, int b) { return a * b; }
+}
+
+// Step 2: Compile with -d flag
+// Command: javac -d . Calculator.java
+
+// Step 3: Use in another file
+import mypackage.Calculator;    // or import mypackage.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Calculator c = new Calculator();
+        System.out.println(c.add(10, 20));       // 30
+        System.out.println(c.multiply(5, 6));    // 30
+    }
+}
+// Compile: javac Main.java
+// Run: java Main</div>
+        <h3>Built-in Packages:</h3>
+        <ul>
+          <li><code>java.lang</code> — String, Math, Object (imported automatically)</li>
+          <li><code>java.util</code> — ArrayList, Scanner, Collections</li>
+          <li><code>java.io</code> — File, InputStream, OutputStream</li>
+          <li><code>java.awt</code>, <code>javax.swing</code> — GUI</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">What is final class, final fields, final methods? / State uses of final keyword.</span>
+        <div class="q-meta"><span class="year-tag">S2021, W2022, W2023, W2024</span><span class="marks-tag">3 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>final keyword — 3 uses:</h3>
+        <h4>1. final variable — constant</h4>
+        <div class="code">final double PI = 3.14159;
+// PI = 3.0;   // ERROR: cannot reassign a final variable</div>
+        <h4>2. final method — cannot be overridden</h4>
+        <div class="code">class Parent {
+    final void display() { System.out.println("Parent display"); }
+}
+class Child extends Parent {
+    // void display() { }   // ERROR: cannot override final method
+}</div>
+        <h4>3. final class — cannot be inherited</h4>
+        <div class="code">final class ImmutableData { }
+// class Sub extends ImmutableData { }   // ERROR!
+// Example: String class in Java is final</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain interface inheritance. Write program where P is extended by P1, P2; P12 inherits P1,P2; Q implements P12.</span>
+        <div class="q-meta"><span class="year-tag">W2021</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">interface P {
+    int CONST_P = 100;
+    void methodP();
+}
+interface P1 extends P {
+    int CONST_P1 = 200;
+    void methodP1();
+}
+interface P2 extends P {
+    int CONST_P2 = 300;
+    void methodP2();
+}
+interface P12 extends P1, P2 {
+    int CONST_P12 = 400;
+    void methodP12();
+}
+class Q implements P12 {
+    public void methodP()   { System.out.println("methodP: " + CONST_P); }
+    public void methodP1()  { System.out.println("methodP1: " + CONST_P1); }
+    public void methodP2()  { System.out.println("methodP2: " + CONST_P2); }
+    public void methodP12() { System.out.println("methodP12: " + CONST_P12); }
+}
+public class InterfaceInheritance {
+    public static void main(String[] args) {
+        Q obj = new Q();
+        obj.methodP();    // methodP: 100
+        obj.methodP1();   // methodP1: 200
+        obj.methodP2();   // methodP2: 300
+        obj.methodP12();  // methodP12: 400
+    }
+}</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">How interfaces support polymorphism? Explain with example.</span>
+        <div class="q-meta"><span class="year-tag">W2025</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>Interfaces enable polymorphism by allowing a single interface reference to refer to objects of different implementing classes. This is a form of runtime polymorphism.</p>
+        <div class="code">interface Shape {
+    double area();
+    void draw();
+}
+class Circle implements Shape {
+    double r;
+    Circle(double r) { this.r = r; }
+    public double area() { return Math.PI * r * r; }
+    public void draw() { System.out.println("Drawing Circle"); }
+}
+class Rectangle implements Shape {
+    double l, w;
+    Rectangle(double l, double w) { this.l=l; this.w=w; }
+    public double area() { return l * w; }
+    public void draw() { System.out.println("Drawing Rectangle"); }
+}
+class Triangle implements Shape {
+    double b, h;
+    Triangle(double b, double h) { this.b=b; this.h=h; }
+    public double area() { return 0.5 * b * h; }
+    public void draw() { System.out.println("Drawing Triangle"); }
+}
+public class InterfacePolymorphism {
+    static void printArea(Shape s) {   // accepts any Shape
+        s.draw();
+        System.out.println("Area: " + s.area());
+    }
+    public static void main(String[] args) {
+        Shape[] shapes = {
+            new Circle(5), new Rectangle(4,6), new Triangle(3,8)
+        };
+        for (Shape s : shapes) {
+            printArea(s);   // polymorphic call
+        }
+    }
+}</div>
+        <div class="note">The method <code>printArea(Shape s)</code> works with any class that implements Shape — this is polymorphism through interfaces.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CHAPTER 7: Exception Handling -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch7">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 7: Exception Handling</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: Exception hierarchy, try-catch-finally, throw, throws, checked vs unchecked, custom exceptions</div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">What is an Exception? Explain the exception hierarchy. Explain try, catch, finally, throw, throws. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021, W2021, W2022, S2023, S2024, W2024, S2025, W2025</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>An <strong>exception</strong> is an abnormal event that disrupts the normal flow of a program at runtime.</p>
+        <div class="diagram">
+          <svg viewBox="0 0 540 220" xmlns="http://www.w3.org/2000/svg">
+            <rect x="190" y="5" width="120" height="30" rx="4" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="250" y="25" text-anchor="middle" fill="#c4b5fd" font-size="11">Throwable</text>
+            <line x1="250" y1="35" x2="150" y2="60" stroke="#7c3aed" stroke-width="1.5"/>
+            <line x1="250" y1="35" x2="380" y2="60" stroke="#7c3aed" stroke-width="1.5"/>
+            <rect x="90" y="60" width="120" height="30" rx="4" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="150" y="80" text-anchor="middle" fill="#86efac" font-size="11">Error (serious)</text>
+            <rect x="310" y="60" width="120" height="30" rx="4" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="370" y="80" text-anchor="middle" fill="#93c5fd" font-size="11">Exception</text>
+            <line x1="370" y1="90" x2="280" y2="115" stroke="#3b82f6" stroke-width="1.5"/>
+            <line x1="370" y1="90" x2="460" y2="115" stroke="#3b82f6" stroke-width="1.5"/>
+            <rect x="200" y="115" width="140" height="30" rx="4" fill="#2a1a00" stroke="#f59e0b"/>
+            <text x="270" y="135" text-anchor="middle" fill="#fcd34d" font-size="10">RuntimeException</text>
+            <rect x="360" y="115" width="160" height="30" rx="4" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="440" y="135" text-anchor="middle" fill="#c4b5fd" font-size="10">Checked Exceptions</text>
+            <text x="150" y="145" fill="#9ca3af" font-size="9">OutOfMemoryError</text>
+            <text x="150" y="158" fill="#9ca3af" font-size="9">StackOverflowError</text>
+            <text x="200" y="165" fill="#9ca3af" font-size="9">NullPointerException</text>
+            <text x="200" y="178" fill="#9ca3af" font-size="9">ArrayIndexOutOfBounds</text>
+            <text x="200" y="191" fill="#9ca3af" font-size="9">ArithmeticException</text>
+            <text x="365" y="165" fill="#9ca3af" font-size="9">IOException</text>
+            <text x="365" y="178" fill="#9ca3af" font-size="9">SQLException</text>
+            <text x="365" y="191" fill="#9ca3af" font-size="9">FileNotFoundException</text>
+          </svg>
+        </div>
+        <h3>Exception Handling Keywords:</h3>
+        <div class="code">public class ExceptionDemo {
+    public static void main(String[] args) {
+        try {
+            // Code that might throw exception
+            int result = 10 / 0;           // ArithmeticException
+            System.out.println(result);
+        } catch (ArithmeticException e) {
+            // Handles the specific exception
+            System.out.println("Cannot divide by zero: " + e.getMessage());
+        } catch (Exception e) {
+            // General catch — catches any other exception
+            System.out.println("Exception: " + e);
+        } finally {
+            // Always executes — for cleanup (close files, DB connections)
+            System.out.println("This always runs");
+        }
+    }
+}
+// Output:
+// Cannot divide by zero: / by zero
+// This always runs</div>
+        <h3>throw vs throws:</h3>
+        <table>
+          <tr><th>throw</th><th>throws</th></tr>
+          <tr><td>Used inside method body</td><td>Used in method declaration</td></tr>
+          <tr><td>Throws one exception at a time</td><td>Declares multiple exceptions</td></tr>
+          <tr><td>Used to explicitly throw exception</td><td>Used to declare possible exceptions</td></tr>
+          <tr><td>throw new Exception("msg");</td><td>void method() throws IOException</td></tr>
+        </table>
+        <div class="code">// throw example
+public static void validateAge(int age) {
+    if (age < 18) {
+        throw new ArithmeticException("Not eligible");  // manually throwing
+    }
+    System.out.println("Welcome!");
+}
+
+// throws example — declares that method might throw IOException
+public static void readFile() throws IOException {
+    FileReader f = new FileReader("file.txt");  // might throw FileNotFoundException
+    // ...
+}</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Differentiate checked and unchecked exceptions. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2023, W2023, W2025</span><span class="marks-tag">3–4 marks</span></div>
+      </div>
+      <div class="answer">
+        <table>
+          <tr><th>Checked Exception</th><th>Unchecked Exception</th></tr>
+          <tr><td>Checked at compile time</td><td>Checked at runtime</td></tr>
+          <tr><td>Must be handled (try-catch) or declared (throws)</td><td>No mandatory handling</td></tr>
+          <tr><td>Subclass of Exception (not RuntimeException)</td><td>Subclass of RuntimeException</td></tr>
+          <tr><td>Examples: IOException, SQLException, FileNotFoundException</td><td>Examples: NullPointerException, ArrayIndexOutOfBoundsException, ArithmeticException</td></tr>
+          <tr><td>Typically recoverable (file not found = try another path)</td><td>Typically programming errors</td></tr>
+        </table>
+        <div class="code">// Checked Exception — must handle
+try {
+    FileReader f = new FileReader("data.txt");  // FileNotFoundException (checked)
+} catch (FileNotFoundException e) {
+    System.out.println("File not found");
+}
+
+// Unchecked Exception — optional handling
+int[] arr = new int[5];
+arr[10] = 1;  // ArrayIndexOutOfBoundsException (unchecked) — runtime crash</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Demonstrate hierarchical exception handling (handling various exceptions in hierarchy). <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021 Q1c, S2022 Q1c</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">import java.util.Scanner;
+
+public class HierarchicalException {
+    public static void main(String[] args) {
+        try {
+            Scanner sc = new Scanner(System.in);
+            int[] arr = {1, 2, 3};
+            
+            System.out.print("Enter index: ");
+            int index = sc.nextInt();
+            
+            System.out.print("Enter divisor: ");
+            int divisor = sc.nextInt();
+            
+            System.out.println("arr[" + index + "] = " + arr[index]);    // may cause ArrayIndexOutOfBoundsException
+            System.out.println("Result: " + (10 / divisor));             // may cause ArithmeticException
+            
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array index out of bounds: " + e.getMessage());
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic error: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("Runtime exception: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("General exception: " + e.getMessage());
+        } finally {
+            System.out.println("Program ends.");
+        }
+    }
+}
+// IMPORTANT: More specific exceptions must come BEFORE general exceptions!
+// Exception (parent) must be LAST catch block.</div>
+        <div class="warning">Always catch more specific exceptions first, then general ones. Catching Exception before RuntimeException causes a compile error.</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Write a program to make a calculator using command line arguments with exception handling.</span>
+        <div class="q-meta"><span class="year-tag">S2023</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">public class Calculator {
+    public static void main(String[] args) {
+        try {
+            if (args.length != 3) {
+                throw new IllegalArgumentException("Usage: java Calculator num1 operator num2");
+            }
+            
+            double num1 = Double.parseDouble(args[0]);  // NumberFormatException if not a number
+            String operator = args[1];
+            double num2 = Double.parseDouble(args[2]);
+            
+            double result;
+            switch (operator) {
+                case "+": result = num1 + num2; break;
+                case "-": result = num1 - num2; break;
+                case "*": result = num1 * num2; break;
+                case "/":
+                    if (num2 == 0)
+                        throw new ArithmeticException("Cannot divide by zero");
+                    result = num1 / num2;
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown operator: " + operator);
+            }
+            System.out.println(num1 + " " + operator + " " + num2 + " = " + result);
+            
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format: " + e.getMessage());
+        } catch (ArithmeticException e) {
+            System.out.println("Math error: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+// Run: java Calculator 10 / 2   → 10.0 / 2.0 = 5.0
+// Run: java Calculator 5 / 0   → Math error: Cannot divide by zero</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">What is difference between final, finally and finalize?</span>
+        <div class="q-meta"><span class="year-tag">S2025, W2024</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <table>
+          <tr><th>final</th><th>finally</th><th>finalize()</th></tr>
+          <tr><td>Keyword</td><td>Keyword (block)</td><td>Method</td></tr>
+          <tr><td>Prevents modification (variable), overriding (method), inheritance (class)</td><td>Block that always executes after try-catch</td><td>Called by GC before destroying object</td></tr>
+          <tr><td>Used with: variables, methods, classes</td><td>Used in exception handling</td><td>Used for cleanup before GC</td></tr>
+        </table>
+        <div class="code">// final
+final int x = 10;
+
+// finally
+try { risky(); }
+catch (Exception e) { handle(); }
+finally { System.out.println("Always runs!"); }
+
+// finalize()
+class Demo {
+    protected void finalize() {
+        System.out.println("Cleaning up before GC");
+    }
+}</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CHAPTER 8: Strings -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch8">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 8: Strings — String, StringBuffer, StringBuilder</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: String methods, StringBuffer vs String vs StringBuilder, character operations</div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain string methods / Differentiate String class and StringBuffer class. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021, W2021, W2022, W2025</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <table>
+          <tr><th>Feature</th><th>String</th><th>StringBuffer</th><th>StringBuilder</th></tr>
+          <tr><td>Mutability</td><td>Immutable</td><td>Mutable</td><td>Mutable</td></tr>
+          <tr><td>Thread-safe</td><td>Yes</td><td>Yes (synchronized)</td><td>No</td></tr>
+          <tr><td>Performance</td><td>Slow (creates new object)</td><td>Moderate</td><td>Fast</td></tr>
+          <tr><td>Use when</td><td>Constant strings</td><td>Multi-threaded string mod</td><td>Single-threaded string mod</td></tr>
+        </table>
+        <h3>Common String Methods:</h3>
+        <div class="code">String s = "Hello World";
+s.length()          // 11
+s.charAt(0)         // 'H'
+s.indexOf('o')      // 4
+s.substring(6)      // "World"
+s.substring(0, 5)   // "Hello"
+s.toUpperCase()     // "HELLO WORLD"
+s.toLowerCase()     // "hello world"
+s.trim()            // removes leading/trailing spaces
+s.replace('l', 'r') // "Herro Worrd"
+s.equals("Hello")   // false (case sensitive)
+s.equalsIgnoreCase("hello world")  // true
+s.contains("World") // true
+s.startsWith("He")  // true
+s.split(" ")        // ["Hello", "World"]
+s.valueOf(42)       // "42" — converts int to String</div>
+        <h3>StringBuffer Methods:</h3>
+        <div class="code">StringBuffer sb = new StringBuffer("Hello");
+sb.append(" World");    // "Hello World"
+sb.insert(5, ",");      // "Hello, World"
+sb.delete(5, 6);        // "Hello World"
+sb.reverse();           // "dlroW olleH"
+sb.length();            // 11
+sb.charAt(0);           // 'd'
+sb.setCharAt(0, 'D');   // "DlroW olleH"</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CHAPTER 9: I/O and Files -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch9">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 9: I/O Streams and File Handling</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: Byte streams, Character streams, Binary I/O, File class, BufferedReader, DataInputStream/OutputStream, Text I/O vs Binary I/O</div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Write short notes on I/O stream classes. Differentiate Text I/O and Binary I/O. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021, W2021, S2023, S2024, W2023, W2025</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="diagram">
+          <svg viewBox="0 0 540 180" xmlns="http://www.w3.org/2000/svg">
+            <text x="270" y="20" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="bold">Java I/O Streams</text>
+            <rect x="190" y="30" width="140" height="30" rx="4" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="260" y="50" text-anchor="middle" fill="#c4b5fd" font-size="11">java.io Package</text>
+            <line x1="200" y1="60" x2="120" y2="90" stroke="#7c3aed" stroke-width="1.5"/>
+            <line x1="330" y1="60" x2="410" y2="90" stroke="#7c3aed" stroke-width="1.5"/>
+            <rect x="60" y="90" width="130" height="30" rx="4" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="125" y="110" text-anchor="middle" fill="#93c5fd" font-size="10">Byte Streams</text>
+            <rect x="350" y="90" width="140" height="30" rx="4" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="420" y="110" text-anchor="middle" fill="#86efac" font-size="10">Character Streams</text>
+            <text x="15" y="145" fill="#9ca3af" font-size="9">InputStream</text>
+            <text x="15" y="158" fill="#9ca3af" font-size="9">OutputStream</text>
+            <text x="100" y="145" fill="#9ca3af" font-size="9">FileInputStream</text>
+            <text x="100" y="158" fill="#9ca3af" font-size="9">FileOutputStream</text>
+            <text x="360" y="145" fill="#9ca3af" font-size="9">Reader / Writer</text>
+            <text x="360" y="158" fill="#9ca3af" font-size="9">FileReader/FileWriter</text>
+            <text x="455" y="145" fill="#9ca3af" font-size="9">BufferedReader</text>
+            <text x="455" y="158" fill="#9ca3af" font-size="9">PrintWriter</text>
+          </svg>
+        </div>
+        <table>
+          <tr><th>Text I/O</th><th>Binary I/O</th></tr>
+          <tr><td>Reads/writes characters (Unicode)</td><td>Reads/writes raw bytes</td></tr>
+          <tr><td>Human-readable output</td><td>Not human-readable</td></tr>
+          <tr><td>Classes: FileReader, FileWriter, BufferedReader, PrintWriter</td><td>Classes: FileInputStream, FileOutputStream, DataInputStream, DataOutputStream</td></tr>
+          <tr><td>Slower (encoding/decoding overhead)</td><td>Faster</td></tr>
+          <tr><td>For text files (.txt, .csv)</td><td>For images, audio, binary data</td></tr>
+        </table>
+        <div class="code">// Text I/O — FileWriter and BufferedReader
+import java.io.*;
+// Writing
+FileWriter fw = new FileWriter("output.txt");
+fw.write("Hello GTU Students!\n");
+fw.close();
+
+// Reading
+BufferedReader br = new BufferedReader(new FileReader("output.txt"));
+String line;
+while ((line = br.readLine()) != null) {
+    System.out.println(line);
+}
+br.close();</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain file I/O using byte stream (FileInputStream, FileOutputStream). <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2022</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">import java.io.*;
+
+public class ByteStreamDemo {
+    public static void main(String[] args) throws IOException {
+        // Writing using FileOutputStream (byte stream)
+        FileOutputStream fos = new FileOutputStream("data.bin");
+        String message = "Hello GTU!";
+        byte[] bytes = message.getBytes();
+        fos.write(bytes);
+        fos.close();
+        System.out.println("Written to file");
+        
+        // Reading using FileInputStream (byte stream)
+        FileInputStream fis = new FileInputStream("data.bin");
+        int byteRead;
+        System.out.print("Read from file: ");
+        while ((byteRead = fis.read()) != -1) {
+            System.out.print((char) byteRead);
+        }
+        fis.close();
+        System.out.println();
+        
+        // Better: BufferedInputStream for efficiency
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream("data.bin"));
+        byte[] buffer = new byte[1024];
+        int bytesRead = bis.read(buffer);
+        System.out.println("Buffered read: " + new String(buffer, 0, bytesRead));
+        bis.close();
+    }
+}</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain DataInputStream and DataOutputStream. Demonstrate with program.</span>
+        <div class="q-meta"><span class="year-tag">W2023</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>DataInputStream and DataOutputStream allow reading/writing primitive data types (int, double, boolean, etc.) in a machine-independent way.</p>
+        <div class="code">import java.io.*;
+
+public class DataIODemo {
+    public static void main(String[] args) throws IOException {
+        // Writing primitive types to file
+        DataOutputStream dos = new DataOutputStream(
+            new FileOutputStream("data.dat"));
+        dos.writeInt(42);
+        dos.writeDouble(3.14);
+        dos.writeBoolean(true);
+        dos.writeUTF("Hello GTU");   // writes String
+        dos.close();
+        System.out.println("Data written successfully");
+        
+        // Reading back primitive types
+        DataInputStream dis = new DataInputStream(
+            new FileInputStream("data.dat"));
+        int i = dis.readInt();
+        double d = dis.readDouble();
+        boolean b = dis.readBoolean();
+        String s = dis.readUTF();
+        dis.close();
+        
+        System.out.println("Int: " + i);        // 42
+        System.out.println("Double: " + d);     // 3.14
+        System.out.println("Boolean: " + b);    // true
+        System.out.println("String: " + s);     // Hello GTU
+    }
+}
+// IMPORTANT: Read in the SAME ORDER as written!</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Demonstrates use of BufferedReader and readLine() method.</span>
+        <div class="q-meta"><span class="year-tag">S2025</span><span class="marks-tag">4 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">import java.io.*;
+
+public class BufferedReaderDemo {
+    public static void main(String[] args) throws IOException {
+        // Reading from keyboard (System.in)
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter your name:");
+        String name = br.readLine();   // reads entire line
+        System.out.println("Hello, " + name + "!");
+        
+        // Reading a file line by line
+        try {
+            BufferedReader fileReader = new BufferedReader(new FileReader("sample.txt"));
+            String line;
+            int lineNum = 1;
+            while ((line = fileReader.readLine()) != null) {
+                System.out.println(lineNum + ": " + line);
+                lineNum++;
+            }
+            fileReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+        }
+    }
+}
+// BufferedReader is more efficient than reading char by char
+// readLine() returns null at end of file</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Write a program that counts the number of words in a text file. File name passed as command line argument.</span>
+        <div class="q-meta"><span class="year-tag">W2021</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">import java.io.*;
+
+public class WordCount {
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("Usage: java WordCount filename.txt");
+            return;
+        }
+        String filename = args[0];
+        int wordCount = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filename));
+            String line;
+            while ((line = br.readLine()) != null) {
+                line = line.trim();
+                if (!line.isEmpty()) {
+                    String[] words = line.split("\\s+");  // split by whitespace
+                    wordCount += words.length;
+                }
+            }
+            br.close();
+            System.out.println("File: " + filename);
+            System.out.println("Total words: " + wordCount);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + filename);
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+    }
+}
+// Run: java WordCount myfile.txt</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Define Object Serialization.</span>
+        <div class="q-meta"><span class="year-tag">S2023</span><span class="marks-tag">3 marks</span></div>
+      </div>
+      <div class="answer">
+        <p><strong>Object Serialization</strong> is the process of converting an object's state into a byte stream so it can be saved to a file, database, or transmitted over a network. The reverse process is called <strong>Deserialization</strong>.</p>
+        <ul>
+          <li>Class must implement <code>Serializable</code> interface (marker interface)</li>
+          <li>Uses <code>ObjectOutputStream</code> to serialize, <code>ObjectInputStream</code> to deserialize</li>
+          <li><code>transient</code> fields are skipped during serialization</li>
+        </ul>
+        <div class="code">import java.io.*;
+
+class Student implements Serializable {
+    String name;
+    int age;
+    transient String password;  // NOT serialized
+    Student(String n, int a, String p) { name=n; age=a; password=p; }
+}
+// Serialize:
+ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("student.ser"));
+oos.writeObject(new Student("Rahul", 20, "secret"));
+oos.close();
+// Deserialize:
+ObjectInputStream ois = new ObjectInputStream(new FileInputStream("student.ser"));
+Student s = (Student) ois.readObject();</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CHAPTER 10: Collections -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch10">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 10: Java Collections Framework</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: ArrayList, LinkedList, Set, Map, HashMap, TreeMap, Iterator, Queue, Collections class</div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Write short note on Java Collections / What is Java Collection Framework? <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2022, W2022, S2023, S2024</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>The <strong>Java Collections Framework (JCF)</strong> is a unified architecture for storing and manipulating groups of objects. Located in <code>java.util</code> package.</p>
+        <div class="diagram">
+          <svg viewBox="0 0 540 200" xmlns="http://www.w3.org/2000/svg">
+            <rect x="190" y="5" width="120" height="25" rx="4" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="250" y="22" text-anchor="middle" fill="#c4b5fd" font-size="10">Collection (interface)</text>
+            <line x1="210" y1="30" x2="120" y2="55" stroke="#7c3aed" stroke-width="1.5"/>
+            <line x1="250" y1="30" x2="250" y2="55" stroke="#7c3aed" stroke-width="1.5"/>
+            <line x1="290" y1="30" x2="420" y2="55" stroke="#7c3aed" stroke-width="1.5"/>
+            <rect x="55" y="55" width="100" height="25" rx="4" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="105" y="72" text-anchor="middle" fill="#93c5fd" font-size="10">List (interface)</text>
+            <rect x="180" y="55" width="100" height="25" rx="4" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="230" y="72" text-anchor="middle" fill="#86efac" font-size="10">Set (interface)</text>
+            <rect x="360" y="55" width="100" height="25" rx="4" fill="#2a1a1a" stroke="#ef4444"/>
+            <text x="410" y="72" text-anchor="middle" fill="#fca5a5" font-size="10">Queue (interface)</text>
+            <text x="30" y="110" fill="#9ca3af" font-size="9">ArrayList</text>
+            <text x="30" y="123" fill="#9ca3af" font-size="9">LinkedList</text>
+            <text x="30" y="136" fill="#9ca3af" font-size="9">Vector/Stack</text>
+            <text x="185" y="110" fill="#9ca3af" font-size="9">HashSet</text>
+            <text x="185" y="123" fill="#9ca3af" font-size="9">LinkedHashSet</text>
+            <text x="185" y="136" fill="#9ca3af" font-size="9">TreeSet</text>
+            <text x="360" y="110" fill="#9ca3af" font-size="9">PriorityQueue</text>
+            <text x="360" y="123" fill="#9ca3af" font-size="9">ArrayDeque</text>
+            <rect x="180" y="155" width="80" height="25" rx="4" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="220" y="172" text-anchor="middle" fill="#c4b5fd" font-size="10">Map (interface)</text>
+            <text x="90" y="190" fill="#9ca3af" font-size="9">HashMap  LinkedHashMap  TreeMap  Hashtable</text>
+          </svg>
+        </div>
+        <table>
+          <tr><th>Class/Interface</th><th>Type</th><th>Key Feature</th></tr>
+          <tr><td>ArrayList</td><td>List</td><td>Dynamic array, allows duplicates, maintains order</td></tr>
+          <tr><td>LinkedList</td><td>List + Queue</td><td>Doubly linked list, fast insert/delete at ends</td></tr>
+          <tr><td>HashSet</td><td>Set</td><td>No duplicates, unordered, O(1) operations</td></tr>
+          <tr><td>TreeSet</td><td>Set</td><td>Sorted order, no duplicates</td></tr>
+          <tr><td>HashMap</td><td>Map</td><td>Key-value pairs, unordered, allows null key</td></tr>
+          <tr><td>TreeMap</td><td>Map</td><td>Sorted by key, red-black tree</td></tr>
+          <tr><td>PriorityQueue</td><td>Queue</td><td>Priority-based ordering</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Demonstrate use of ArrayList. Sort in descending order. Differences between ArrayList and LinkedList. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2022, S2023, S2024, W2025</span><span class="marks-tag">4–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <table>
+          <tr><th>ArrayList</th><th>LinkedList</th></tr>
+          <tr><td>Dynamic array internally</td><td>Doubly linked list internally</td></tr>
+          <tr><td>Fast random access O(1)</td><td>Slow random access O(n)</td></tr>
+          <tr><td>Slow insert/delete in middle O(n)</td><td>Fast insert/delete at ends O(1)</td></tr>
+          <tr><td>Less memory (no node pointers)</td><td>More memory (stores prev/next pointers)</td></tr>
+          <tr><td>Use for frequent access</td><td>Use for frequent insert/delete at beginning</td></tr>
+        </table>
+        <div class="note">Use LinkedList when you need to insert/delete elements at the beginning of a list (ArrayList is O(n) for that, LinkedList is O(1)).</div>
+        <div class="code">import java.util.*;
+
+public class ArrayListDemo {
+    public static void main(String[] args) {
+        ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+        
+        // Add elements
+        list.add(45); list.add(12); list.add(78);
+        list.add(23); list.add(56);
+        System.out.println("Original: " + list);
+        
+        // Sort ascending
+        Collections.sort(list);
+        System.out.println("Ascending: " + list);
+        
+        // Sort descending
+        Collections.sort(list, Collections.reverseOrder());
+        System.out.println("Descending: " + list);
+        
+        // Other operations
+        list.remove(Integer.valueOf(56));   // remove by value
+        System.out.println("After removing 56: " + list);
+        System.out.println("Size: " + list.size());
+        System.out.println("Contains 78: " + list.contains(78));
+        System.out.println("Index of 78: " + list.indexOf(78));
+        
+        // Iterate using for-each
+        for (int x : list) {
+            System.out.print(x + " ");
+        }
+    }
+}</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain Set and Map in Java with example. Describe HashMap, LinkedHashMap, and TreeMap. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">W2022, W2025</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>Set Interface</h3>
+        <p>A collection that does NOT allow duplicate elements.</p>
+        <div class="code">import java.util.*;
+// HashSet — unordered, O(1) operations
+Set&lt;String&gt; hashSet = new HashSet&lt;&gt;();
+hashSet.add("Banana"); hashSet.add("Apple"); hashSet.add("Banana"); // dup ignored
+System.out.println(hashSet);   // [Apple, Banana] — no duplicates
+
+// TreeSet — sorted order
+Set&lt;String&gt; treeSet = new TreeSet&lt;&gt;();
+treeSet.add("Banana"); treeSet.add("Apple"); treeSet.add("Cherry");
+System.out.println(treeSet);   // [Apple, Banana, Cherry] — alphabetical</div>
+        <h3>Map Interface</h3>
+        <p>Stores key-value pairs. Keys must be unique.</p>
+        <div class="code">// HashMap — unordered
+Map&lt;String, Integer&gt; hashMap = new HashMap&lt;&gt;();
+hashMap.put("Rahul", 90);
+hashMap.put("Priya", 85);
+hashMap.put("Rahul", 95);   // overwrites
+System.out.println(hashMap.get("Rahul"));  // 95
+
+// LinkedHashMap — maintains insertion order
+Map&lt;String, Integer&gt; linkedMap = new LinkedHashMap&lt;&gt;();
+linkedMap.put("B", 2); linkedMap.put("A", 1); linkedMap.put("C", 3);
+System.out.println(linkedMap);  // {B=2, A=1, C=3} — insertion order
+
+// TreeMap — sorted by key
+Map&lt;String, Integer&gt; treeMap = new TreeMap&lt;&gt;();
+treeMap.put("B", 2); treeMap.put("A", 1); treeMap.put("C", 3);
+System.out.println(treeMap);  // {A=1, B=2, C=3} — sorted
+
+// Iterate Map
+for (Map.Entry&lt;String, Integer&gt; entry : hashMap.entrySet()) {
+    System.out.println(entry.getKey() + " = " + entry.getValue());
+}</div>
+        <table>
+          <tr><th>Map Type</th><th>Order</th><th>Null Key</th><th>Performance</th></tr>
+          <tr><td>HashMap</td><td>None</td><td>1 null key</td><td>O(1)</td></tr>
+          <tr><td>LinkedHashMap</td><td>Insertion order</td><td>1 null key</td><td>O(1)</td></tr>
+          <tr><td>TreeMap</td><td>Sorted by key</td><td>No null key</td><td>O(log n)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain LinkedList collection class with example. / Write program to add 10 elements and traverse in both directions.</span>
+        <div class="q-meta"><span class="year-tag">S2025, W2025</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">import java.util.*;
+
+public class LinkedListDemo {
+    public static void main(String[] args) {
+        LinkedList&lt;Integer&gt; list = new LinkedList&lt;&gt;();
+        
+        // Add elements
+        for (int i = 1; i &lt;= 10; i++) {
+            list.add(i * 10);   // 10, 20, 30, ..., 100
+        }
+        
+        System.out.println("LinkedList: " + list);
+        
+        // LinkedList specific methods
+        list.addFirst(5);      // add at beginning
+        list.addLast(110);     // add at end
+        System.out.println("After addFirst/Last: " + list);
+        System.out.println("First: " + list.getFirst());
+        System.out.println("Last: " + list.getLast());
+        
+        // Traverse FORWARD using Iterator
+        System.out.print("Forward: ");
+        Iterator&lt;Integer&gt; it = list.iterator();
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
+        }
+        
+        // Traverse BACKWARD using ListIterator
+        System.out.print("\nBackward: ");
+        ListIterator&lt;Integer&gt; lit = list.listIterator(list.size());
+        while (lit.hasPrevious()) {
+            System.out.print(lit.previous() + " ");
+        }
+        
+        list.removeFirst();
+        list.removeLast();
+        System.out.println("\nAfter remove first/last: " + list);
+    }
+}
+// LinkedList implements both List and Deque interfaces
+// Methods unique to LinkedList: addFirst, addLast, getFirst, getLast, 
+//                               removeFirst, removeLast, peekFirst, peekLast</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain Sets with example. List and Set comparison.</span>
+        <div class="q-meta"><span class="year-tag">W2021, S2025</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <table>
+          <tr><th>List</th><th>Set</th></tr>
+          <tr><td>Allows duplicates</td><td>No duplicates</td></tr>
+          <tr><td>Ordered (index-based access)</td><td>HashSet: unordered; TreeSet: sorted</td></tr>
+          <tr><td>ArrayList, LinkedList, Vector</td><td>HashSet, TreeSet, LinkedHashSet</td></tr>
+        </table>
+        <div class="code">import java.util.*;
+
+public class SetDemo {
+    public static void main(String[] args) {
+        // HashSet
+        Set&lt;Integer&gt; hashSet = new HashSet&lt;&gt;(Arrays.asList(3,1,4,1,5,9,2,6,5));
+        System.out.println("HashSet (no duplicates): " + hashSet);
+        
+        // TreeSet — sorted
+        Set&lt;Integer&gt; treeSet = new TreeSet&lt;&gt;(hashSet);
+        System.out.println("TreeSet (sorted): " + treeSet);
+        
+        // Set operations
+        Set&lt;Integer&gt; s1 = new HashSet&lt;&gt;(Arrays.asList(1,2,3,4,5));
+        Set&lt;Integer&gt; s2 = new HashSet&lt;&gt;(Arrays.asList(4,5,6,7,8));
+        
+        Set&lt;Integer&gt; union = new HashSet&lt;&gt;(s1);
+        union.addAll(s2);       // Union
+        System.out.println("Union: " + union);
+        
+        Set&lt;Integer&gt; intersection = new HashSet&lt;&gt;(s1);
+        intersection.retainAll(s2);   // Intersection
+        System.out.println("Intersection: " + intersection);
+    }
+}</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CHAPTER 11: Multithreading -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch11">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 11: Multithreading</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: Thread lifecycle, Thread class, Runnable interface, Thread synchronization, Thread properties</div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">What is a thread? Describe the complete life cycle of thread. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">W2021, W2022, W2023, S2024, W2024, S2025, W2025</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>A <strong>thread</strong> is the smallest unit of execution within a process. Multithreading allows multiple threads to run concurrently, sharing process resources.</p>
+        <div class="diagram">
+          <svg viewBox="0 0 540 160" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="60" width="80" height="40" rx="6" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="50" y="85" text-anchor="middle" fill="#c4b5fd" font-size="10">New</text>
+            <text x="50" y="120" text-anchor="middle" fill="#9ca3af" font-size="8">new Thread()</text>
+            <text x="99" y="85" fill="#a78bfa" font-size="14">→</text>
+            <text x="83" y="75" fill="#9ca3af" font-size="7">start()</text>
+            <rect x="110" y="60" width="90" height="40" rx="6" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="155" y="85" text-anchor="middle" fill="#93c5fd" font-size="10">Runnable</text>
+            <text x="155" y="120" text-anchor="middle" fill="#9ca3af" font-size="8">ready to run</text>
+            <text x="209" y="85" fill="#a78bfa" font-size="14">→</text>
+            <text x="195" y="75" fill="#9ca3af" font-size="7">scheduled</text>
+            <rect x="220" y="60" width="80" height="40" rx="6" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="260" y="85" text-anchor="middle" fill="#86efac" font-size="10">Running</text>
+            <text x="260" y="120" text-anchor="middle" fill="#9ca3af" font-size="8">run() executes</text>
+            <line x1="300" y1="80" x2="350" y2="50" stroke="#22c55e" stroke-width="1.5"/>
+            <text x="305" y="68" fill="#9ca3af" font-size="7">wait()/sleep()</text>
+            <rect x="350" y="30" width="90" height="35" rx="6" fill="#2a1a00" stroke="#f59e0b"/>
+            <text x="395" y="52" text-anchor="middle" fill="#fcd34d" font-size="10">Waiting/Blocked</text>
+            <line x1="350" y1="60" x2="310" y2="80" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="325" y="45" fill="#9ca3af" font-size="7">notify()</text>
+            <text x="309" y="85" fill="#a78bfa" font-size="14">→</text>
+            <text x="305" y="100" fill="#9ca3af" font-size="7">run() ends</text>
+            <rect x="450" y="60" width="80" height="40" rx="6" fill="#2a1a1a" stroke="#ef4444"/>
+            <text x="490" y="85" text-anchor="middle" fill="#fca5a5" font-size="10">Dead</text>
+            <text x="490" y="120" text-anchor="middle" fill="#9ca3af" font-size="8">terminated</text>
+          </svg>
+        </div>
+        <table>
+          <tr><th>State</th><th>Description</th></tr>
+          <tr><td>New</td><td>Thread object created but start() not called yet</td></tr>
+          <tr><td>Runnable</td><td>start() called, ready to run, waiting for CPU</td></tr>
+          <tr><td>Running</td><td>Thread is actually executing (run() method)</td></tr>
+          <tr><td>Waiting/Blocked</td><td>Thread waiting (sleep, wait, I/O, lock)</td></tr>
+          <tr><td>Dead/Terminated</td><td>run() completed or exception thrown</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Two ways to implement thread — Thread class and Runnable interface. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2022, W2023, W2024, S2025, W2025</span><span class="marks-tag">4–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <h3>Method 1: Extending Thread class</h3>
+        <div class="code">class MyThread extends Thread {
+    private String threadName;
+    
+    MyThread(String name) {
+        this.threadName = name;
+    }
+    
+    @Override
+    public void run() {
+        for (int i = 1; i &lt;= 5; i++) {
+            System.out.println(threadName + " - count: " + i);
+            try { Thread.sleep(500); } catch (InterruptedException e) { }
+        }
+        System.out.println(threadName + " finished");
+    }
+}
+
+public class ThreadDemo {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread("Thread-1");
+        MyThread t2 = new MyThread("Thread-2");
+        t1.start();  // start() calls run() internally — DO NOT call run() directly!
+        t2.start();
+    }
+}</div>
+        <h3>Method 2: Implementing Runnable interface</h3>
+        <div class="code">class MyRunnable implements Runnable {
+    private String name;
+    
+    MyRunnable(String name) {
+        this.name = name;
+    }
+    
+    @Override
+    public void run() {
+        for (int i = 1; i &lt;= 5; i++) {
+            System.out.println(name + " - " + i);
+            try { Thread.sleep(300); } catch (InterruptedException e) { }
+        }
+    }
+}
+
+public class RunnableDemo {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new MyRunnable("Runnable-1"));
+        Thread t2 = new Thread(new MyRunnable("Runnable-2"));
+        t1.start();
+        t2.start();
+    }
+}</div>
+        <table>
+          <tr><th>Extending Thread</th><th>Implementing Runnable</th></tr>
+          <tr><td>Cannot extend another class</td><td>Can still extend another class</td></tr>
+          <tr><td>Less flexible</td><td>More flexible (preferred)</td></tr>
+          <tr><td>Thread is-a Thread</td><td>Thread has-a Runnable</td></tr>
+        </table>
+        <div class="highlight">Runnable is preferred because Java doesn't support multiple inheritance for classes. Using Runnable leaves you free to extend another class.</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain Thread Synchronization with example. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">W2021, W2022, W2024, S2024</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p><strong>Thread Synchronization</strong> ensures that only one thread can access a shared resource at a time, preventing race conditions and data inconsistency.</p>
+        <p>Uses the <code>synchronized</code> keyword. The thread that acquires the lock on an object blocks other threads from accessing synchronized methods/blocks on the same object.</p>
+        <div class="code">class BankAccount {
+    private double balance;
+    
+    BankAccount(double initialBalance) {
+        balance = initialBalance;
+    }
+    
+    // synchronized method — only one thread can enter at a time
+    synchronized void withdraw(double amount) {
+        String threadName = Thread.currentThread().getName();
+        System.out.println(threadName + " trying to withdraw: " + amount);
+        if (balance >= amount) {
+            try { Thread.sleep(100); } catch (InterruptedException e) { }
+            balance -= amount;
+            System.out.println(threadName + " withdrew: " + amount + " | Balance: " + balance);
+        } else {
+            System.out.println(threadName + " INSUFFICIENT FUNDS");
+        }
+    }
+}
+
+class Customer extends Thread {
+    BankAccount account;
+    double amount;
+    
+    Customer(String name, BankAccount acc, double amt) {
+        super(name);
+        account = acc;
+        amount = amt;
+    }
+    
+    public void run() {
+        account.withdraw(amount);
+    }
+}
+
+public class SyncDemo {
+    public static void main(String[] args) {
+        BankAccount acc = new BankAccount(1000);
+        Customer c1 = new Customer("Alice", acc, 700);
+        Customer c2 = new Customer("Bob", acc, 600);
+        c1.start();
+        c2.start();
+    }
+}
+// Without synchronized: Both might think balance >= amount and both withdraw!
+// With synchronized: Only one thread at a time, so data is consistent.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CHAPTER 12: Generics -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch12">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 12: Generic Programming</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: Generic classes, Generic methods, advantages, limitations</div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">What is Generic programming and why is it needed? Explain generic classes and methods with example. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2021, S2025, W2025</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p><strong>Generic programming</strong> allows writing classes and methods that work with any data type using type parameters. This enables type safety at compile time while writing reusable code.</p>
+        <h3>Why needed?</h3>
+        <ul>
+          <li>Type safety — errors caught at compile time, not runtime</li>
+          <li>Code reusability — one class/method works for multiple types</li>
+          <li>Eliminates type casting</li>
+          <li>Better readability</li>
+        </ul>
+        <h3>Generic Class:</h3>
+        <div class="code">// Generic class — T is type parameter
+class Box&lt;T&gt; {
+    private T value;
+    
+    Box(T value) { this.value = value; }
+    
+    T getValue() { return value; }
+    void setValue(T value) { this.value = value; }
+    
+    void display() {
+        System.out.println("Value: " + value + " (Type: " + value.getClass().getSimpleName() + ")");
+    }
+}
+
+public class GenericDemo {
+    public static void main(String[] args) {
+        Box&lt;Integer&gt; intBox = new Box&lt;&gt;(42);
+        Box&lt;String&gt; strBox = new Box&lt;&gt;("Hello GTU");
+        Box&lt;Double&gt; dblBox = new Box&lt;&gt;(3.14);
+        
+        intBox.display();  // Value: 42 (Type: Integer)
+        strBox.display();  // Value: Hello GTU (Type: String)
+        dblBox.display();  // Value: 3.14 (Type: Double)
+    }
+}</div>
+        <h3>Generic Method:</h3>
+        <div class="code">public class GenericMethods {
+    // Generic method — works for any Comparable type
+    public static &lt;T extends Comparable&lt;T&gt;&gt; T findMax(T a, T b) {
+        return (a.compareTo(b) &gt;= 0) ? a : b;
+    }
+    
+    // Generic method to print any array
+    public static &lt;T&gt; void printArray(T[] arr) {
+        for (T elem : arr) {
+            System.out.print(elem + " ");
+        }
+        System.out.println();
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(findMax(10, 20));         // 20
+        System.out.println(findMax("Apple", "Mango")); // Mango
+        System.out.println(findMax(3.14, 2.71));     // 3.14
+        
+        Integer[] intArr = {1, 2, 3, 4, 5};
+        String[] strArr = {"A", "B", "C"};
+        printArray(intArr);  // 1 2 3 4 5
+        printArray(strArr);  // A B C
+    }
+}</div>
+        <h3>Limitations of Generic Programming:</h3>
+        <ul>
+          <li>Cannot create objects of type parameter: <code>new T()</code> is not allowed</li>
+          <li>Cannot create arrays of generic types: <code>new T[10]</code> is not allowed</li>
+          <li>Static context cannot use type parameters</li>
+          <li>Cannot use primitive types as type parameters — must use wrapper classes (Integer not int)</li>
+          <li>Runtime type info is erased (type erasure) — <code>instanceof T</code> not allowed</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CHAPTER 13: JavaFX GUI -->
+<!-- ============================================================ -->
+<div class="chapter" id="ch13">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>📌 Chapter 13: JavaFX GUI</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="topic-summary">Topics: JavaFX vs AWT vs Swing, UI controls, Layout panes, Event handling, Animation, Basic program structure</div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Compare JavaFX with Swing and AWT. What is JavaFX? How different from AWT?</span>
+        <div class="q-meta"><span class="year-tag">S2024, W2023</span><span class="marks-tag">3 marks</span></div>
+      </div>
+      <div class="answer">
+        <table>
+          <tr><th>Feature</th><th>AWT</th><th>Swing</th><th>JavaFX</th></tr>
+          <tr><td>Introduction</td><td>Java 1.0 (1995)</td><td>Java 1.2 (1998)</td><td>Java 8+ (2014)</td></tr>
+          <tr><td>Components</td><td>Native OS components</td><td>Pure Java (lightweight)</td><td>Rich CSS-styled controls</td></tr>
+          <tr><td>CSS Support</td><td>No</td><td>No</td><td>Yes</td></tr>
+          <tr><td>3D Graphics</td><td>No</td><td>No</td><td>Yes</td></tr>
+          <tr><td>Animation</td><td>No</td><td>Limited</td><td>Rich animation API</td></tr>
+          <tr><td>FXML</td><td>No</td><td>No</td><td>Yes (MVC)</td></tr>
+          <tr><td>Platform</td><td>Platform-dependent look</td><td>Platform-independent</td><td>Modern, platform-independent</td></tr>
+        </table>
+        <div class="highlight">JavaFX is the modern replacement for Swing. It provides a rich set of UI controls, CSS styling, animation, and multimedia support.</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Illustrate basic structure of JavaFX program. List JavaFX UI controls. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">S2023, S2024, W2022, W2024</span><span class="marks-tag">4–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="diagram">
+          <svg viewBox="0 0 440 180" xmlns="http://www.w3.org/2000/svg">
+            <rect x="150" y="5" width="140" height="30" rx="4" fill="#1e1b4b" stroke="#7c3aed"/>
+            <text x="220" y="25" text-anchor="middle" fill="#c4b5fd" font-size="11">Stage (window)</text>
+            <line x1="220" y1="35" x2="220" y2="55" stroke="#7c3aed" stroke-width="1.5"/>
+            <rect x="155" y="55" width="130" height="30" rx="4" fill="#1e3a5f" stroke="#3b82f6"/>
+            <text x="220" y="75" text-anchor="middle" fill="#93c5fd" font-size="11">Scene (content)</text>
+            <line x1="220" y1="85" x2="220" y2="105" stroke="#3b82f6" stroke-width="1.5"/>
+            <rect x="155" y="105" width="130" height="30" rx="4" fill="#1a2e1a" stroke="#22c55e"/>
+            <text x="220" y="125" text-anchor="middle" fill="#86efac" font-size="11">Root Node (Pane)</text>
+            <line x1="160" y1="135" x2="80" y2="155" stroke="#22c55e" stroke-width="1.5"/>
+            <line x1="220" y1="135" x2="220" y2="155" stroke="#22c55e" stroke-width="1.5"/>
+            <line x1="280" y1="135" x2="360" y2="155" stroke="#22c55e" stroke-width="1.5"/>
+            <rect x="30" y="155" width="100" height="22" rx="4" fill="#2a1a00" stroke="#f59e0b"/>
+            <text x="80" y="170" text-anchor="middle" fill="#fcd34d" font-size="10">Button</text>
+            <rect x="165" y="155" width="110" height="22" rx="4" fill="#2a1a00" stroke="#f59e0b"/>
+            <text x="220" y="170" text-anchor="middle" fill="#fcd34d" font-size="10">TextField</text>
+            <rect x="310" y="155" width="100" height="22" rx="4" fill="#2a1a00" stroke="#f59e0b"/>
+            <text x="360" y="170" text-anchor="middle" fill="#fcd34d" font-size="10">Label</text>
+          </svg>
+        </div>
+        <div class="code">import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+
+public class BasicJavaFX extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) {
+        // 1. Create UI controls
+        Label label = new Label("Enter your name:");
+        TextField textField = new TextField();
+        Button button = new Button("Say Hello");
+        Label resultLabel = new Label();
+        
+        // 2. Handle events
+        button.setOnAction(e -> {
+            String name = textField.getText();
+            resultLabel.setText("Hello, " + name + "!");
+        });
+        
+        // 3. Create layout
+        VBox vbox = new VBox(10);   // vertical box with 10px spacing
+        vbox.getChildren().addAll(label, textField, button, resultLabel);
+        vbox.setPadding(new javafx.geometry.Insets(20));
+        
+        // 4. Create scene
+        Scene scene = new Scene(vbox, 300, 200);
+        
+        // 5. Set stage and show
+        primaryStage.setTitle("Hello JavaFX");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+}</div>
+        <h3>JavaFX UI Controls:</h3>
+        <ul>
+          <li><strong>Label</strong> — display text</li>
+          <li><strong>Button</strong> — clickable button</li>
+          <li><strong>TextField</strong> — single-line text input</li>
+          <li><strong>TextArea</strong> — multi-line text input</li>
+          <li><strong>CheckBox</strong> — toggle selection</li>
+          <li><strong>RadioButton</strong> — mutually exclusive selection (use ToggleGroup)</li>
+          <li><strong>ComboBox</strong> — drop-down selection</li>
+          <li><strong>ListView</strong> — scrollable list</li>
+          <li><strong>Slider</strong> — value selector</li>
+          <li><strong>PasswordField</strong> — masked text input</li>
+          <li><strong>ImageView</strong> — display images</li>
+          <li><strong>MenuBar, Menu, MenuItem</strong> — menus</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">List various layout panes in JavaFX. Explain different layout panes. <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">W2021, W2022, W2023, S2023, S2024, W2025</span><span class="marks-tag">3–7 marks</span></div>
+      </div>
+      <div class="answer">
+        <table>
+          <tr><th>Layout Pane</th><th>Arrangement</th><th>Use</th></tr>
+          <tr><td>FlowPane</td><td>Row, wraps when full</td><td>Tags, buttons in a row</td></tr>
+          <tr><td>GridPane</td><td>Rows and columns grid</td><td>Forms, login screens</td></tr>
+          <tr><td>BorderPane</td><td>5 regions: Top, Bottom, Left, Right, Center</td><td>Main app layout</td></tr>
+          <tr><td>HBox</td><td>Single horizontal row</td><td>Toolbar, button row</td></tr>
+          <tr><td>VBox</td><td>Single vertical column</td><td>Menu, form fields</td></tr>
+          <tr><td>AnchorPane</td><td>Absolute positioning with anchors</td><td>Complex layouts</td></tr>
+          <tr><td>StackPane</td><td>Stacks children on top of each other</td><td>Overlapping elements</td></tr>
+          <tr><td>TilePane</td><td>Equal-size tiles</td><td>Image galleries</td></tr>
+        </table>
+        <div class="code">// GridPane example — login form
+import javafx.scene.layout.GridPane;
+import javafx.geometry.*;
+
+GridPane grid = new GridPane();
+grid.setAlignment(Pos.CENTER);
+grid.setHgap(10);   // horizontal gap between columns
+grid.setVgap(10);   // vertical gap between rows
+grid.setPadding(new Insets(25));
+
+Label userLabel = new Label("Username:");
+TextField userField = new TextField();
+Label passLabel = new Label("Password:");
+PasswordField passField = new PasswordField();
+Button loginBtn = new Button("Login");
+
+grid.add(userLabel, 0, 0);  // column 0, row 0
+grid.add(userField, 1, 0);  // column 1, row 0
+grid.add(passLabel, 0, 1);
+grid.add(passField, 1, 1);
+grid.add(loginBtn, 1, 2);</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Explain event handling in JavaFX. What is event source and event object?</span>
+        <div class="q-meta"><span class="year-tag">S2023, W2025</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p><strong>Event Source:</strong> The UI component that generates the event (e.g., Button, TextField)</p>
+        <p><strong>Event Object:</strong> The object that contains information about the event (ActionEvent, MouseEvent, KeyEvent)</p>
+        <p><strong>Event Handler:</strong> The code that handles/responds to the event</p>
+        <div class="code">import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class EventDemo extends Application {
+    @Override
+    public void start(Stage stage) {
+        Button btn = new Button("Click Me");
+        Label label = new Label("No clicks yet");
+        int[] count = {0};
+        
+        // Method 1: Inner class handler
+        btn.setOnAction(new EventHandler&lt;ActionEvent&gt;() {
+            public void handle(ActionEvent e) {
+                count[0]++;
+                label.setText("Clicked " + count[0] + " times");
+            }
+        });
+        
+        // Method 2: Lambda expression (preferred, shorter)
+        btn.setOnAction(e -> label.setText("Button clicked!"));
+        
+        // Mouse event handling
+        btn.setOnMouseEntered(e -> btn.setStyle("-fx-background-color: lightblue;"));
+        btn.setOnMouseExited(e -> btn.setStyle(""));
+        
+        VBox root = new VBox(10, btn, label);
+        root.setPadding(new javafx.geometry.Insets(20));
+        stage.setScene(new Scene(root, 250, 150));
+        stage.setTitle("Event Demo");
+        stage.show();
+    }
+    public static void main(String[] args) { launch(args); }
+}</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Demonstrate animation effect in JavaFX (PathTransition, Animation). <span class="imp-label">IMP</span></span>
+        <div class="q-meta"><span class="year-tag">W2022, S2025</span><span class="marks-tag">3–4 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">import javafx.animation.*;
+import javafx.application.Application;
+import javafx.scene.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+public class AnimationDemo extends Application {
+    @Override
+    public void start(Stage stage) {
+        Pane pane = new Pane();
+        
+        // Create a circle
+        Circle ball = new Circle(20, Color.BLUE);
+        pane.getChildren().add(ball);
+        
+        // 1. PathTransition — move along a path
+        Path path = new Path();
+        path.getElements().add(new MoveTo(100, 200));
+        path.getElements().add(new CubicCurveTo(40, 10, 400, 10, 350, 200));
+        
+        PathTransition pt = new PathTransition();
+        pt.setDuration(Duration.seconds(4));
+        pt.setPath(path);
+        pt.setNode(ball);
+        pt.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        pt.setCycleCount(Timeline.INDEFINITE);
+        pt.setAutoReverse(true);
+        pt.play();
+        
+        // 2. FadeTransition — fade in/out
+        Circle circle2 = new Circle(250, 150, 30, Color.RED);
+        pane.getChildren().add(circle2);
+        
+        FadeTransition ft = new FadeTransition(Duration.seconds(2), circle2);
+        ft.setFromValue(1.0);
+        ft.setToValue(0.1);
+        ft.setCycleCount(Timeline.INDEFINITE);
+        ft.setAutoReverse(true);
+        ft.play();
+        
+        // 3. ScaleTransition — scale up/down
+        Circle circle3 = new Circle(400, 150, 20, Color.GREEN);
+        pane.getChildren().add(circle3);
+        
+        ScaleTransition st = new ScaleTransition(Duration.seconds(1), circle3);
+        st.setByX(2); st.setByY(2);
+        st.setCycleCount(Timeline.INDEFINITE);
+        st.setAutoReverse(true);
+        st.play();
+        
+        stage.setScene(new Scene(pane, 500, 350));
+        stage.setTitle("JavaFX Animation");
+        stage.show();
+    }
+    public static void main(String[] args) { launch(args); }
+}</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Write programs to deal with Mouse Events.</span>
+        <div class="q-meta"><span class="year-tag">S2025</span><span class="marks-tag">4 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">import javafx.application.Application;
+import javafx.scene.*;
+import javafx.scene.control.Label;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+
+public class MouseEventDemo extends Application {
+    @Override
+    public void start(Stage stage) {
+        Pane pane = new Pane();
+        Label info = new Label("Move/Click mouse in pane");
+        info.setLayoutX(10); info.setLayoutY(10);
+        pane.getChildren().add(info);
+        
+        Circle circle = new Circle(200, 200, 30, Color.LIGHTBLUE);
+        pane.getChildren().add(circle);
+        
+        // Mouse moved — show coordinates
+        pane.setOnMouseMoved(e -> {
+            info.setText("Mouse at: (" + (int)e.getX() + ", " + (int)e.getY() + ")");
+        });
+        
+        // Mouse clicked — move circle to click position
+        pane.setOnMouseClicked(e -> {
+            circle.setCenterX(e.getX());
+            circle.setCenterY(e.getY());
+            info.setText("Clicked at: (" + (int)e.getX() + ", " + (int)e.getY() + ")");
+        });
+        
+        // Mouse entered circle — change color
+        circle.setOnMouseEntered(e -> circle.setFill(Color.ORANGE));
+        circle.setOnMouseExited(e -> circle.setFill(Color.LIGHTBLUE));
+        
+        // Mouse dragged — drag circle
+        circle.setOnMouseDragged(e -> {
+            circle.setCenterX(e.getX());
+            circle.setCenterY(e.getY());
+        });
+        
+        stage.setScene(new Scene(pane, 400, 400));
+        stage.setTitle("Mouse Events");
+        stage.show();
+    }
+    public static void main(String[] args) { launch(args); }
+}</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Create RadioButton using RadioButton class and group using ToggleGroup.</span>
+        <div class="q-meta"><span class="year-tag">S2025</span><span class="marks-tag">3 marks</span></div>
+      </div>
+      <div class="answer">
+        <div class="code">import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class RadioButtonDemo extends Application {
+    @Override
+    public void start(Stage stage) {
+        Label label = new Label("Select your year:");
+        
+        RadioButton rb1 = new RadioButton("First Year");
+        RadioButton rb2 = new RadioButton("Second Year");
+        RadioButton rb3 = new RadioButton("Third Year");
+        RadioButton rb4 = new RadioButton("Fourth Year");
+        
+        // ToggleGroup — ensures only one can be selected at a time
+        ToggleGroup group = new ToggleGroup();
+        rb1.setToggleGroup(group);
+        rb2.setToggleGroup(group);
+        rb3.setToggleGroup(group);
+        rb4.setToggleGroup(group);
+        rb1.setSelected(true);   // default selection
+        
+        Label result = new Label();
+        
+        // Handle selection change
+        group.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                RadioButton selected = (RadioButton) newVal;
+                result.setText("You selected: " + selected.getText());
+            }
+        });
+        
+        VBox vbox = new VBox(10, label, rb1, rb2, rb3, rb4, result);
+        vbox.setPadding(new javafx.geometry.Insets(20));
+        
+        stage.setScene(new Scene(vbox, 250, 250));
+        stage.setTitle("RadioButton Demo");
+        stage.show();
+    }
+    public static void main(String[] args) { launch(args); }
+}</div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-text">Design and develop EMI Calculator using JavaFX.</span>
+        <div class="q-meta"><span class="year-tag">W2023</span><span class="marks-tag">7 marks</span></div>
+      </div>
+      <div class="answer">
+        <p>Formula: EMI = P × r × (1+r)^n / ((1+r)^n - 1), where r = annual_rate/12/100, n = years×12</p>
+        <div class="code">import javafx.application.Application;
+import javafx.geometry.*;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+
+public class EMICalculator extends Application {
+    @Override
+    public void start(Stage stage) {
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10); grid.setVgap(10);
+        grid.setPadding(new Insets(25));
+        
+        TextField loanField = new TextField();
+        TextField rateField = new TextField();
+        TextField yearsField = new TextField();
+        Label emiLabel = new Label("---");
+        Label totalLabel = new Label("---");
+        Button calcBtn = new Button("Calculate EMI");
+        
+        grid.add(new Label("Loan Amount (P):"), 0, 0);
+        grid.add(loanField, 1, 0);
+        grid.add(new Label("Annual Interest Rate (%):"), 0, 1);
+        grid.add(rateField, 1, 1);
+        grid.add(new Label("Number of Years:"), 0, 2);
+        grid.add(yearsField, 1, 2);
+        grid.add(calcBtn, 1, 3);
+        grid.add(new Label("Monthly EMI:"), 0, 4);
+        grid.add(emiLabel, 1, 4);
+        grid.add(new Label("Total Payment:"), 0, 5);
+        grid.add(totalLabel, 1, 5);
+        
+        calcBtn.setOnAction(e -> {
+            try {
+                double P = Double.parseDouble(loanField.getText());
+                double annualRate = Double.parseDouble(rateField.getText());
+                int years = Integer.parseInt(yearsField.getText());
+                
+                double r = annualRate / 12 / 100;  // monthly rate
+                int n = years * 12;                 // total months
+                
+                // EMI Formula
+                double emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+                double totalPayment = emi * n;
+                
+                emiLabel.setText(String.format("%.2f", emi));
+                totalLabel.setText(String.format("%.2f", totalPayment));
+            } catch (NumberFormatException ex) {
+                emiLabel.setText("Invalid input!");
+            }
+        });
+        
+        stage.setScene(new Scene(grid, 380, 300));
+        stage.setTitle("EMI Calculator");
+        stage.show();
+    }
+    public static void main(String[] args) { launch(args); }
+}
+// Example: P=5000, rate=4.5%, years=4
+// r = 4.5/12/100 = 0.00375
+// n = 48
+// EMI ≈ 114.02, Total ≈ 5472.84</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Quick Reference -->
+<div class="chapter">
+  <div class="ch-header" onclick="toggleCh(this)">
+    <h2>⚡ Quick Reference — Most Important Topics (Frequently Asked)</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="ch-body">
+    <div class="highlight">
+      <strong>🔥 Asked in 5+ papers (Very High Priority):</strong><br>
+      Constructor (all types) • Access Modifiers • Thread lifecycle • ArrayList/LinkedList • Exception handling (try-catch-finally, throw/throws) • Inheritance types • Method overloading vs overriding • JavaFX layout panes
+    </div>
+    <div class="note">
+      <strong>⭐ Asked in 3–4 papers:</strong><br>
+      Static keyword • final keyword • Interface vs Abstract class • Collections Framework • Synchronization • String methods • Generic programming • JavaFX basic structure
+    </div>
+    <div class="warning">
+      <strong>📝 Important Programs to Practice:</strong><br>
+      1. Employee class with yearly salary + 10% raise<br>
+      2. Thread synchronization (bank account)<br>
+      3. ArrayList sort descending<br>
+      4. EMI Calculator (JavaFX)<br>
+      5. Exception handling calculator<br>
+      6. LinkedList traversal both ways<br>
+      7. Multiple inheritance via interfaces (circle + square area)
+    </div>
+    <table>
+      <tr><th>Topic</th><th>Papers</th><th>Typical Marks</th></tr>
+      <tr><td>Constructors + Overloading</td><td>S21,W21,S22,W22,S23,S24,W24,S25</td><td>3–7</td></tr>
+      <tr><td>Exception Handling</td><td>All 10 papers</td><td>3–7</td></tr>
+      <tr><td>Thread Lifecycle</td><td>W21,W22,S23,W23,S24,W24,S25,W25</td><td>3–7</td></tr>
+      <tr><td>Collections (ArrayList)</td><td>S22,S23,S24,W24,S25,W25</td><td>4–7</td></tr>
+      <tr><td>Interface vs Abstract</td><td>S21,W21,S22,S24,W24,S25,W25</td><td>3–7</td></tr>
+      <tr><td>JavaFX Layouts</td><td>W21,W22,S23,S24,W24,S25,W25</td><td>3–7</td></tr>
+      <tr><td>Inheritance</td><td>S21,S22,W22,S23,W24,S25</td><td>4–7</td></tr>
+      <tr><td>Generics</td><td>S21,S25,W25</td><td>7</td></tr>
+    </table>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<div style="text-align:center; padding:20px; color:#6b7280; font-size:0.85rem; border-top:1px solid #1e1e3e; margin-top:30px;">
+  GTU OOP-I (3140705) — Complete Study Guide | Questions from S2021–W2025 | Good luck! 🎓
+</div>
+
+<script>
+function toggleCh(header) {
+  header.classList.toggle('open');
+  var body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+function toggleQ(header) {
+  var answer = header.nextElementSibling;
+  answer.classList.toggle('open');
+}
+// Open first chapter by default
+document.addEventListener('DOMContentLoaded', function() {
+  var first = document.querySelector('.ch-header');
+  if(first) { first.classList.add('open'); first.nextElementSibling.classList.add('open'); }
+});
+</script>
+</body>
+</html>
+HTMLEOF
+echo "File created. Size: $(wc -c < /mnt/user-data/outputs/OOP_GTU_Complete_Study.html) bytes"
